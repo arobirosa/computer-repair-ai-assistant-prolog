@@ -1,9 +1,74 @@
-# Descripition
+# Goal
 Proof of concept to evaluate the advantages and disadvantages of knowledge representation and reasoning (KRR). It uses Prolog as the main programming language.
 
 This AI Assistant will help anyone learning to repair their computer.
 
+# Conclusions reached after developing the assistant
+
+## Positive points
+* Easy to understand how the assistant reached a conclusion
+* 
+
+## Negative points
+* There aren't any prolog programmers in the market. Prolog is more difficult to understand as a language than object-oriented or imperative languages like Java or Python
+* ost prolog distributions don't seem to be actively used in commercial projects
+
+## Neutral points
+
+# Requirements
+
+## Must have
+
+- [ ] Uses the prolog programming language
+- [ ] An user without training can use the assistant
+- [ ] An user with simple steps can add new causes and symptoms
+- [ ] The messages and inputs can be internationalised in different languages
+- [ ] The assistant works on Windows
+- [ ] Automatic tests for the assistant can be written
+
+## Should Have
+- [ ] The entered symptoms can be saved. And an user can restored a previously saved session
+- [ ] The assistant can be integrated in a website or delivered as a separated programme
+- [ ] It is possible to add causes which only affect some computer models
+
+## Could have - Nice to have
+- [ ] The assistant can be called from a Java programme
+
+## Won't have
+
+None
+
+# Installation
+
+On a linux box run
+
+~~~
+sudo apt-get install swi-prolog
+~~~
+
+# Prolog development environments
+
+The following were evaluated for use in this project:
+
+* [SWI-Prolog](https://www.swi-prolog.org/) **Choosen**. It can link Prolog predicates to an SQL database, Java and Python. It can work on both Windows and Linux-based systems.
+
+## Discarded
+
+* [ErgoAI](https://github.com/ErgoAI) Documentation is poor. Discarded. It can link Prolog predicates to an SQL database, Java and Python
+* [Visual Prolog](https://www.visual-prolog.com/) Discarded. It only works on Windows and its syntax is propietary.
+* [XSB: a deductive database](https://xsb.sourceforge.net/) It is used by ErgoAI internally.
+* [GNU Prolog](https://www.gprolog.org/) It can't use databases to get predicates
+* [ECLiPSe is an open-source software system for the cost-effective development and deployment of constraint programming applications, e.g. in the 
+  areas of planning, scheduling, resource allocation, timetabling, transport etc.](http://www.eclipseclp.org/) Better for constraint based problems
+* [Jprolog](https://github.com/jiprolog/jiprolog/releases) The website is outdated and the last change was on 2015.
+
+
+
 --------
+
+
+
+
 
 The next sections must be organized
 
@@ -20,46 +85,7 @@ Rule-based KRR uses only facts and rules of the form IF X THEN Y (and some more 
 KRR is best suited for decision support in cases where domain knowledge can be elicited directly from subject matter experts (SMEs) with reasonable effort or from knowledge represented in text, such as regulations, contracts, textbooks, and other documents.   This knowledge is then codified using logical statements. In these situations, KRR is far superior to Machine Learning (ML) because it is explainable, incremental, has high-precision, does not depend on a large number of examples, and is not subject to spoofing or training bias.  Explainability is particularly important in law, health care, regulation, taxation, and the areas where mistakes may result in loss of life and disasters. [from ErgoAI Faq](https://docs.google.com/document/d/1J_ASpGjDwgqMDzNgB-hqQC3keA8sIMZIHHs8gmJXG04/edit)
 
 
-# Installation
 
-On a linux box run
-
-~~~
-sudo apt-get install swi-prolog
-~~~
-
-# Requirements
-
-## Must have
-
-* Uses the prolog programming language
-* An user without training can use the assistant
-* An user with simple steps can add new causes and symptoms
-* The messages and inputs can be internationalised in different languages
-* The assistant works on Windows
-* Automatic tests for the assistant can be written
-
-## Should Have 
-* The entered symptoms can be saved. And an user can restored a previously saved session
-* The assistant can be integrated in a website or delivered as a separated programme
-* It is possible to add causes which only affect some computer models
-
-## Could have - Nice to have
-* The assistant can be called from a Java programme
-
-## Won't have 
-
-None
-
-# Prolog development environments
-
-[SWI-Prolog](https://www.swi-prolog.org/) It can link Prolog predicates to an SQL database, Java and Python. It can work on both Windows and Linux-based systems.
-[ErgoAI](https://github.com/ErgoAI) Documentation is poor. Discarded. It can link Prolog predicates to an SQL database, Java and Python
-[Visual Prolog](https://www.visual-prolog.com/) Discarded. It only works on Windows and its syntax is propietary.
-[XSB: a deductive database](https://xsb.sourceforge.net/)
-[GNU Prolog](https://www.gprolog.org/)
-[ECLiPSe is an open-source software system for the cost-effective development and deployment of constraint programming applications, e.g. in the areas of planning, scheduling, resource allocation, timetabling, transport etc.](http://www.eclipseclp.org/)
-[Jprolog](https://github.com/jiprolog/jiprolog/releases) The website is outdated and the last change was on 2015.
 
 # How to test a prolog programme?
 
