@@ -11,7 +11,7 @@
 
 % Definition of repair causes
 
-% Internal predicates of the expert system
+% Internal predicates of the expert system. Do not touch.
 
 
 

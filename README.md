@@ -1,25 +1,43 @@
 # Goal
-Proof of concept to evaluate the advantages and disadvantages of knowledge representation and reasoning (KRR). It uses Prolog as the main programming language.
+Proof of concept to evaluate the advantages and disadvantages of [knowledge representation and reasoning (KRR) systems (KRR)](https://docs.google.com/document/d/1J_ASpGjDwgqMDzNgB-hqQC3keA8sIMZIHHs8gmJXG04/edit). The knowledge is represented by way of logic statements, and reasoning is done by way of the inference methods of that logic. It uses Prolog as the main programming language.
 
-This AI Assistant will help anyone learning to repair their computer.
+This AI Assistant will help anyone to repair their computer.
+
+KRRs **might** be superior to Machine Learning (ML) in this use case because:
+* The expert system can **explain how it got to the conclusion**. ["Explainability is particularly important in law, health care, regulation, 
+  taxation, and the areas where mistakes may result in loss of life and disasters", from the ErgoAI FAQ](https://docs.google.com/document/d/1J_ASpGjDwgqMDzNgB-hqQC3keA8sIMZIHHs8gmJXG04/edit)
+* The knowledge base is incremental
+* The reasoning has high-precision when no probabilities are used
+* Does not depend on a large number of examples. This means that it is not affected by training bias
+
+Under the condition that it is **easy to represent the domain knowledge** interviewing experts in the aread or reading textbooks, regulations, 
+contracts and other documents.
+
+[Source: ErgoAI FAQ](https://docs.google.com/document/d/1J_ASpGjDwgqMDzNgB-hqQC3keA8sIMZIHHs8gmJXG04/edit)
 
 # Conclusions reached after developing the assistant
 
+TODO Complete this section
+
 ## Positive points
 * Easy to understand how the assistant reached a conclusion
-* 
+* The knowledge base is incremental
+* The reasoning has high-precision when no probabilities are used
 
 ## Negative points
 * There aren't any prolog programmers in the market. Prolog is more difficult to understand as a language than object-oriented or imperative languages like Java or Python
-* ost prolog distributions don't seem to be actively used in commercial projects
+* Most prolog distributions don't seem to be actively used in commercial projects
+* Intellij IDEA don't support Prolog. The Prolog plugin is not compatible with version 2022.1.3
 
 ## Neutral points
+
+TODO Complete this section
 
 # Requirements
 
 ## Must have
 
-- [ ] Uses the prolog programming language
+* Uses the prolog programming language
 - [ ] An user without training can use the assistant
 - [ ] An user with simple steps can add new causes and symptoms
 - [ ] The messages and inputs can be internationalised in different languages
@@ -36,7 +54,7 @@ This AI Assistant will help anyone learning to repair their computer.
 
 ## Won't have
 
-None
+* Diagnostic using probability because this can be better modelled with **machine learning** and this could make the diagnostic **difficult to explain**
 
 # Installation
 
@@ -46,11 +64,23 @@ On a linux box run
 sudo apt-get install swi-prolog
 ~~~
 
-# Prolog development environments
+# Usage
+
+~~~
+swipl src/computer-repair-assistant.pl
+~~~
+
+# Acknowledgment
+
+This project is based on medical expert system developed by * [Shiddika Jahan Bushra](https://github.com/sjbushra/Medical-Diagnosis-system-using-Prolog/)
+
+# Evaluation of Prolog development environments
 
 The following were evaluated for use in this project:
 
 * [SWI-Prolog](https://www.swi-prolog.org/) **Choosen**. It can link Prolog predicates to an SQL database, Java and Python. It can work on both Windows and Linux-based systems.
+
+[Table with all implementations of Prolog](https://en.wikipedia.org/wiki/Comparison_of_Prolog_implementations)
 
 ## Discarded
 
@@ -62,34 +92,26 @@ The following were evaluated for use in this project:
   areas of planning, scheduling, resource allocation, timetabling, transport etc.](http://www.eclipseclp.org/) Better for constraint based problems
 * [Jprolog](https://github.com/jiprolog/jiprolog/releases) The website is outdated and the last change was on 2015.
 
+# Other projects using prolog to create (medical expert systems):
+
+* [Medical Diagnosis system using Prolog created by Shiddika Jahan Bushra](https://github.com/sjbushra/Medical-Diagnosis-system-using-Prolog/)
+* [NephroDoctor created by Nicola Dileo and Tommaso Viterbo](https://github.com/nicoladileo/NephroDoctor) Shows how to make diagnostic using  probability, modify the answers and save the symptoms to a file
+* [Medical Expert System for COVID-19 from Rojay White and others](https://github.com/R-White-0/Medical-Expert-System) It uses 3 or more symptoms 
+  to diagnostic COVID-19. It shows how to use windows, messages boxes and checkboxes to ask for user imput with Prolog. Notice: Works locally but not on the online version of SWI Prolog.
+
 
 
 --------
 
+TODO The next sections must be organized
 
 
-
-
-The next sections must be organized
-
-# Why using prolog or other knowledge representation and reasoning (KRR) tool?
-
-## What is knowledge representation and reasoning (KRR)?
-Knowledge representation and reasoning is a branch of Artificial Intelligence (AI) in which decision-making is done by way of reasoning from knowledge about the domain of discourse and general background knowledge. The knowledge is represented by way of logic statements, and reasoning is done by way of the inference methods of that logic. Different KRR approaches mainly differ in their underlying logics and the reasoning methods they support. [from ErgoAI Faq](https://docs.google.com/document/d/1J_ASpGjDwgqMDzNgB-hqQC3keA8sIMZIHHs8gmJXG04/edit)
-
-## What is rule-based KRR? 
-Rule-based KRR uses only facts and rules of the form IF X THEN Y (and some more complex ones) to represent knowledge, trading some expressivity for scalability.  Despite the syntactic restrictions, this form of KRR is highly expressive, and its scalability makes it practical. [from ErgoAI Faq](https://docs.google.com/document/d/1J_ASpGjDwgqMDzNgB-hqQC3keA8sIMZIHHs8gmJXG04/edit)
-
-
-## What is KRR good for?
-KRR is best suited for decision support in cases where domain knowledge can be elicited directly from subject matter experts (SMEs) with reasonable effort or from knowledge represented in text, such as regulations, contracts, textbooks, and other documents.   This knowledge is then codified using logical statements. In these situations, KRR is far superior to Machine Learning (ML) because it is explainable, incremental, has high-precision, does not depend on a large number of examples, and is not subject to spoofing or training bias.  Explainability is particularly important in law, health care, regulation, taxation, and the areas where mistakes may result in loss of life and disasters. [from ErgoAI Faq](https://docs.google.com/document/d/1J_ASpGjDwgqMDzNgB-hqQC3keA8sIMZIHHs8gmJXG04/edit)
-
-
-
-
-# How to test a prolog programme?
-
-https://stackoverflow.com/questions/8294703/faster-way-of-testing-your-prolog-program
+https://www.swi-prolog.org/pldoc/man?predicate=style_check/1
+https://www.gyaanibuddy.com/assignments/assignment-detail/medical-diagnosis-in-prolog/
+https://roboticsandenergy.com/projects/expert-program-computer-project/
+https://swish.swi-prolog.org/example/movies.pl
+https://www.swi-prolog.org/download/stable
+https://www.swi-prolog.org/pldoc/man?section=implhistory
 
 # Prolog code fixers
 
@@ -99,7 +121,6 @@ https://codepal.ai/code-fixer/prolog
 https://codingfleet.com/code-assistant/prolog/
 
 # Other projects
-[Medical Diagnosis system using Prolog](https://github.com/sjbushra/Medical-Diagnosis-system-using-Prolog/tree/master)
 [Medical diagnosis in prolog](https://www.gyaanibuddy.com/assignments/assignment-detail/medical-diagnosis-in-prolog/)
 [Expert program computer project of Robotics and Energy](https://roboticsandenergy.com/projects/expert-program-computer-project/)
 [SHEPHERD: Deep learning for diagnosing patients with rare genetic diseases](https://github.com/mims-harvard/SHEPHERD)
