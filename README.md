@@ -31,7 +31,7 @@ TODO Complete this section
 
 ## Neutral points
 
-TODO Complete this section
+* It is difficult for an domain expert to add new diagnoses on his/her own. For a fast repair, the symptoms which are easy to check must be written first on the prolog programm. 
 
 # Requirements
 
@@ -41,7 +41,7 @@ TODO Complete this section
 - [ ] An user without training can use the assistant
 - [ ] An user with simple steps can add new causes and symptoms
 - [ ] The messages and inputs can be internationalised in different languages
-- [ ] The assistant works on Windows
+- [ ] The assistant works on Windows or can be used with a browser
 - [ ] Automatic tests for the assistant can be written
 
 ## Should Have
@@ -73,6 +73,8 @@ swipl src/computer-repair-assistant.pl
 # Acknowledgment
 
 This project is based on medical expert system developed by * [Shiddika Jahan Bushra](https://github.com/sjbushra/Medical-Diagnosis-system-using-Prolog/)
+
+The diagnostic and symptoms were inspired from the diagrams of this [expert system created by Gena Charnukha](https://roboticsandenergy.com/projects/expert-program-computer-project/). Because I structured my expert system in another way, no code from this project was used.
 
 # Evaluation of Prolog development environments
 
@@ -108,7 +110,6 @@ TODO The next sections must be organized
 
 https://www.swi-prolog.org/pldoc/man?predicate=style_check/1
 https://www.gyaanibuddy.com/assignments/assignment-detail/medical-diagnosis-in-prolog/
-https://roboticsandenergy.com/projects/expert-program-computer-project/
 https://swish.swi-prolog.org/example/movies.pl
 https://www.swi-prolog.org/download/stable
 https://www.swi-prolog.org/pldoc/man?section=implhistory
