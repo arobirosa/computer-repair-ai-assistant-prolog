@@ -3,8 +3,12 @@
 %
 % Predicates
 %   start   Starts a new repair case. It removes all old facts entered by the user.
+%
+% TODO The following predicates must be implemented
 %   report  Generates a report
 %   change  Modifies the answers
+%   save(repairCaseID)  Saves the case into the database
+%   load(repairCaseID)  Loads the case from the database
 
 %%%%%%% DEFINITION OF SYMPTOMS
 
@@ -59,6 +63,23 @@ brokenComponent(chicken_pox) :-
     symptom(chills),
     symptom(body_ache),
     symptom(rash).
+    
+brokenComponent(power_issue) :-
+    symptom(no_power),
+    symptom(strange_noise),
+    symptom(no_screen).
+brokenComponent(hardware_failure) :-
+    symptom(slow_performance),
+    symptom(overheating),
+    symptom(unexpected_shutdown).
+brokenComponent(virus_infection) :-
+    symptom(popups),
+    symptom(slow_internet),
+    symptom(files_missing).
+brokenComponent(os_issue) :-
+    symptom(blue_screen),
+    symptom(software_crashes),
+    symptom(slow_boot).
 
 
 %%%%%% INTERNAL PREDICATES OF THE EXPERT SYSTEM. DO NOT TOUCH.
@@ -67,14 +88,11 @@ brokenComponent(chicken_pox) :-
 :- dynamic yes/1,no/1.
 
 go :-
-    write('What is repair case ID? '),
-    read_line_to_string(user_input, RepairCase),
     brokenComponent(Disease),
-    write_list(['Repair case ', RepairCase,': The broken component probably is ',Disease,'.']),nl.
+    write_list(['The broken component probably is ',Disease,'.']),nl.
 
 go :-
-    write('Sorry, I don''t seem to be able to'),nl,
-    write('diagnose the broken component. Please contact a technician.'),nl.
+    write('I can not diagnose the broken component. Please contact a technician.'),nl.
 
 verify(S) :-
    (yes(S) -> true ;
@@ -96,7 +114,7 @@ write_list(Terms).
 
 % Predicate to read a yes/no answer
 ask(Question) :-
-	write_list([Question, " (yes/y/no/n) "]),
+	write_list([Question, ' (yes/y/no/n) ']),
 	read_line_to_string(user_input, N),
-	( (N == "yes" ; N == "y") -> assert(yes(Question)) ;
+	( (N == 'yes' ; N == 'y') -> assert(yes(Question)) ;
        assert(no(Question)), fail).
