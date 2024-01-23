@@ -15,7 +15,7 @@
 
 go :-
 write('What is repair case ID? '),
-read(RepairCase),get_single_char(Code),
+read_line_to_string(user_input, RepairCase),
 brokenComponent(RepairCase,Disease),
 write_list([RepairCase,', probably has ',Disease,'.']),nl.
 
@@ -39,14 +39,6 @@ symptom(RepairCase,sneezing) :-
 verify(RepairCase," have a sneezing (y/n) ?").
 symptom(RepairCase,swollen_glands) :-
 verify(RepairCase," have a swollen_glands (y/n) ?").
-
-ask(RepairCase,Question) :-
-	write(RepairCase),write(', do you'),write(Question),
-	read(N),
-	( (N == yes ; N == y)
-      ->
-       assert(yes(Question)) ;
-       assert(no(Question)), fail).
 
 :- dynamic yes/1,no/1.
 
@@ -109,3 +101,22 @@ response(Reply) :-
 get_single_char(Code),
 put_code(Code), nl,
 char_code(Reply, Code).
+
+% Other predicates
+
+% Predicate to read a yes/no answer
+read_yes_no(Answer) :-
+    read_line_to_string(user_input, Input),
+    (   (Input == yes ; Input == y) ->
+        Answer = true
+    ;   (Input == no ; Input == n) ->
+        Answer = false
+    ;   write('Invalid input. Please enter yes, y, n or no.'), nl,
+        read_yes_no(Answer)
+    ).
+
+ask(RepairCase, Question) :-
+	write(Question),
+	read_line_to_string(user_input, N),
+	( (N == "yes" ; N == "y") -> assert(yes(Question)) ;
+       assert(no(Question)), fail).
