@@ -34,7 +34,7 @@ TODO Complete this section
 * It is difficult for an domain expert to add new diagnoses on his/her own. For a fast repair, the symptoms which are easy to check must be written first on the prolog programm. 
 * Intellij IDEA supports Prolog syntax highlighting using the plug-in Logtalk. The Prolog plugin is not compatible with version 2022.1.3 
 
-# Requirements
+# Requirements of the proof of concept
 
 ## Must have
 
@@ -70,6 +70,11 @@ sudo apt-get install swi-prolog
 ~~~
 swipl src/computer-repair-assistant.pl
 ~~~
+
+# How to contribute
+
+* As an user, you can create issues with errors or ideas for improvemets
+* As a developer, you can extend the knowledge base, correct errors or make improvements. I recommend you to use Intellij IDEA as IDE, open a terminal window, run **swipl src/computer-repair-assistant.pl** and make tests in the interactive mode. You can reload the source code by entering **make.**.
 
 # Acknowledgment
 
