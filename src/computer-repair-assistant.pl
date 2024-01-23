@@ -12,74 +12,77 @@
 
 %%%%%%% DEFINITION OF SYMPTOMS
 
-symptom(fever) :-  verify(" have a fever?").
-symptom(rash) :- verify(" have a rash?").
-symptom(headache) :- verify(" have a headache?").
-symptom(runny_nose) :-  verify(" have a runny_nose?").
-symptom(conjunctivitis) :- verify(" have a conjunctivitis?").
-symptom(cough) :- verify(" have a cough?").
-symptom(body_ache) :- verify(" have a body_ache?").
-symptom(chills) :- verify(" have a chills?").
-symptom(sore_throat) :- verify(" have a sore_throat?").
-symptom(sneezing) :- verify(" have a sneezing?").
-symptom(swollen_glands) :- verify(" have a swollen_glands?").
+% TODO Add conditions which are negated.
+symptom(battery_light_do_not_turn_on) :- verify("Is the battery light turned off after the power button is turned on?").
+symptom(battery_light_turns_on) :- verify("Is the battery light turned on after the power button is turned on?").
+symptom(hard_disk_spins_on_a_second_motherboard) :- verify("Does the hard disk spin when connected to a second motherboard?").
+symptom(known_working_hard_disk_do_not_spin_on_motherboard) :- verify("Does a hard disk which is known to work don't spin on the motherboard?").
+symptom(ram_modules_not_compatible_with_motherboard) :- verify("The speed and form of the RAM modules are not documented on the manual of the motherboard?").
+symptom(ram_modules_were_updated_lately) :- verify("Was the RAM module changed lately?").
+symptom(screen_is_not_displaying_anything) :- verify("Is display blank? It doesn't display anything").
+symptom(system_do_not_turn_on) :- verify("The system don't turn on, right?").
+symptom(system_turns_on) :- verify("Does the system turn on?").
+symptom(system_do_not_work_after_reinserting_power_cable_connector) :- verify("The system don't turn on after taking out and reinserting the power connector from the PSU to the motherboard, right?").
+symptom(system_works_after_reinserting_power_cable_connector) :- verify("The system turns on after taking out and reinserting the power connector from the PSU to the motherboard, right?").
+symptom(system_do_not_work_with_another_power_cord) :- verify("The system don't turn on with another power cord, right?").
+symptom(system_has_a_power_supply_unit) :- verify("Does the system have a power supply unit? Laptops don't have one, while desktops do.").
+symptom(system_works_after_reinserting_the_ram_modules) :- verify("After you remove the RAM module(s) and insert them in the slot, does the system work?").
+symptom(system_works_on_another_outlet) :- verify("Does the system work in another power outlet?").
+symptom(system_works_with_a_new_motherboard) :- verify("Does the computer work with a new motherboard?").
+symptom(system_works_with_a_new_power_supply_unit) :- verify("Does the computer work with a new power supply?").
+symptom(system_works_with_another_power_cord) :- verify("Does the computer work with a another power cord?").
+symptom(system_works_with_old_modules) :- verify("Does the computer work with the old RAM module(s)?").
 
 %%%%%%% DEFINITION OF BROKEN COMPONENT
 
-brokenComponent(german_measles) :-
-    symptom(fever),
-    symptom(headache),
-    symptom(runny_nose),
-    symptom(rash).
+brokenComponent(no_electricity_on_the_power_outlet) :-
+    symptom(system_do_not_turn_on),
+    symptom(battery_light_do_not_turn_on),
+    symptom(system_works_on_another_outlet).
 
-brokenComponent(common_cold) :-
-    symptom(headache),
-    symptom(sneezing),
-    symptom(sore_throat),
-    symptom(runny_nose),
-    symptom(chills).
+brokenComponent(power_cord) :-
+    symptom(system_do_not_turn_on),
+    symptom(battery_light_do_not_turn_on),
+    symptom(system_works_with_another_power_cord).
 
-brokenComponent(measles) :-
-    symptom(cough),
-    symptom(sneezing),
-    symptom(runny_nose).
+brokenComponent(motherboard_power_cable_is_disconnected) :-
+    symptom(system_do_not_turn_on),
+    symptom(battery_light_do_not_turn_on),
+    symptom(system_do_not_work_with_another_power_cord), % TODO Add conditions which are negated.
+    symptom(system_works_after_reinserting_power_cable_connector),
+    symptom(hard_disk_spins_on_a_second_motherboard).
 
-brokenComponent(flu) :-
-    symptom(fever),
-    symptom(headache),
-    symptom(body_ache),
-    symptom(conjunctivitis),
-    symptom(chills),
-    symptom(sore_throat),
-    symptom(runny_nose),
-    symptom(cough).
+brokenComponent(motherboard_is_burnt) :-
+    symptom(system_do_not_turn_on),
+    symptom(battery_light_do_not_turn_on),
+    symptom(system_do_not_work_with_another_power_cord), % TODO Add conditions which are negated.
+    symptom(system_do_not_work_after_reinserting_power_cable_connector),
+    % The next line shows how two tests are possible to diagnose. It applies an OR condition
+    (symptom(hard_disk_spins_on_a_second_motherboard);symptom(known_working_hard_disk_do_not_spin_on_motherboard),
+    symptom(system_works_with_a_new_motherboard).
 
-brokenComponent(mumps) :-
-    symptom(fever),
-    symptom(swollen_glands).
+brokenComponent(power_supply_unit_is_burnt) :-
+    symptom(system_do_not_turn_on),
+    symptom(battery_light_do_not_turn_on),
+    symptom(system_do_not_work_with_another_power_cord), % TODO Add conditions which are negated.
+    symptom(system_has_a_power_supply_unit),
+    symptom(system_do_not_work_after_reinserting_power_cable_connector),
+    symptom(system_works_with_a_new_power_supply_unit).
 
-brokenComponent(chicken_pox) :-
-    symptom(fever),
-    symptom(chills),
-    symptom(body_ache),
-    symptom(rash).
-    
-brokenComponent(power_issue) :-
-    symptom(no_power),
-    symptom(strange_noise),
-    symptom(no_screen).
-brokenComponent(hardware_failure) :-
-    symptom(slow_performance),
-    symptom(overheating),
-    symptom(unexpected_shutdown).
-brokenComponent(virus_infection) :-
-    symptom(popups),
-    symptom(slow_internet),
-    symptom(files_missing).
-brokenComponent(os_issue) :-
-    symptom(blue_screen),
-    symptom(software_crashes),
-    symptom(slow_boot).
+brokenComponent(incompatible_ram_modules) :-
+    symptom(system_turns_on), % TODO Add conditions which are negated.
+    symptom(battery_light_turns_on),
+    symptom(screen_is_not_displaying_anything),
+    symptom(ram_modules_were_updated_lately),
+    symptom(ram_modules_not_compatible_with_motherboard),
+    symptom(system_works_with_old_modules).
+
+brokenComponent(disconnected_ram_modules) :-
+    symptom(system_turns_on), % TODO Add conditions which are negated.
+    symptom(battery_light_turns_on),
+    symptom(screen_is_not_displaying_anything),
+    symptom(ram_modules_were_updated_lately),
+    symptom(system_works_after_reinserting_the_ram_modules).
 
 
 %%%%%% INTERNAL PREDICATES OF THE EXPERT SYSTEM. DO NOT TOUCH.
