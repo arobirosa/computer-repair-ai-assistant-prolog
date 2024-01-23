@@ -58,7 +58,7 @@ brokenComponent(motherboard_is_burnt) :-
     symptom(system_do_not_work_with_another_power_cord), % TODO Add conditions which are negated.
     symptom(system_do_not_work_after_reinserting_power_cable_connector),
     % The next line shows how two tests are possible to diagnose. It applies an OR condition
-    (symptom(hard_disk_spins_on_a_second_motherboard);symptom(known_working_hard_disk_do_not_spin_on_motherboard),
+    (symptom(hard_disk_spins_on_a_second_motherboard);symptom(known_working_hard_disk_do_not_spin_on_motherboard)),
     symptom(system_works_with_a_new_motherboard).
 
 brokenComponent(power_supply_unit_is_burnt) :-
