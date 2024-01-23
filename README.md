@@ -20,19 +20,28 @@ contracts and other documents.
 TODO Complete this section
 
 ## Positive points
-* Easy to understand how the assistant reached a conclusion
-* The knowledge base is incremental
+* **Easy to understand how the assistant reached a conclusion**
+* **The knowledge base is incremental**
 * The reasoning has high-precision when no probabilities are used
 
 ## Negative points
+* How the prolog engine works is difficult to understand. Small changes like using single quotes for strings will create atoms which behave different from string and the following code will never be true:
+
+~~~
+% Predicate to read a yes/no answer
+ask(Question) :-
+	write_list([Question, ' (yes/y/no/n) ']),
+	read_line_to_string(user_input, N),
+	( (N == 'yes' ; N == 'y') -> assert(yes(Question)) ;
+       assert(no(Question)), fail).
+~~~
 * There aren't any prolog programmers in the market. Prolog is more difficult to understand as a language than object-oriented or imperative languages like Java or Python
 * Most prolog distributions don't seem to be actively used in commercial projects
 
-
 ## Neutral points
 
-* It is difficult for an domain expert to add new diagnoses on his/her own. For a fast repair, the symptoms which are easy to check must be written first on the prolog programm. 
-* Intellij IDEA supports Prolog syntax highlighting using the plug-in Logtalk. The Prolog plugin is not compatible with version 2022.1.3 
+* **It is difficult for a domain expert to add new diagnoses on his/her own.** For a fast repair, the symptoms which are easy to check must be written first on the prolog programm. 
+* The IDEs have poor support for Prolog. Intellij IDEA supports Prolog syntax highlighting using the plug-in Logtalk. The Prolog plugin is not compatible with version 2022.1.3 
 
 # Requirements of the proof of concept
 
