@@ -116,5 +116,5 @@ write_list(Terms).
 ask(Question) :-
 	write_list([Question, ' (yes/y/no/n) ']),
 	read_line_to_string(user_input, N),
-	( (N == 'yes' ; N == 'y') -> assert(yes(Question)) ;
+	( (N == "yes" ; N == "y") -> assert(yes(Question)) ;
        assert(no(Question)), fail).
