@@ -16,81 +16,76 @@
 go :-
 write('What is repair case ID? '),
 read_line_to_string(user_input, RepairCase),
-brokenComponent(RepairCase,Disease),
+brokenComponent(Disease),
 write_list([RepairCase,', probably has ',Disease,'.']),nl.
 
 go :-
 write('Sorry, I don''t seem to be able to'),nl,
 write('diagnose the disease.'),nl.
 
-symptom(RepairCase,fever) :-  verify(RepairCase," have a fever (y/n) ?").
-symptom(RepairCase,rash) :- verify(RepairCase," have a rash (y/n) ?").
-symptom(RepairCase,headache) :- verify(RepairCase," have a headache (y/n) ?").
-symptom(RepairCase,runny_nose) :-  verify(RepairCase," have a runny_nose (y/n) ?").
-symptom(RepairCase,conjunctivitis) :- verify(RepairCase," have a conjunctivitis (y/n) ?").
-symptom(RepairCase,cough) :- verify(RepairCase," have a cough (y/n) ?").
-symptom(RepairCase,body_ache) :-
-verify(RepairCase," have a body_ache (y/n) ?").
-symptom(RepairCase,chills) :-
-verify(RepairCase," have a chills (y/n) ?").
-symptom(RepairCase,sore_throat) :-
-verify(RepairCase," have a sore_throat (y/n) ?").
-symptom(RepairCase,sneezing) :-
-verify(RepairCase," have a sneezing (y/n) ?").
-symptom(RepairCase,swollen_glands) :-
-verify(RepairCase," have a swollen_glands (y/n) ?").
+symptom(fever) :-  verify(" have a fever?").
+symptom(rash) :- verify(" have a rash?").
+symptom(headache) :- verify(" have a headache?").
+symptom(runny_nose) :-  verify(" have a runny_nose?").
+symptom(conjunctivitis) :- verify(" have a conjunctivitis?").
+symptom(cough) :- verify(" have a cough?").
+symptom(body_ache) :- verify(" have a body_ache?").
+symptom(chills) :- verify(" have a chills?").
+symptom(sore_throat) :- verify(" have a sore_throat?").
+symptom(sneezing) :- verify(" have a sneezing?").
+symptom(swollen_glands) :- verify(" have a swollen_glands?").
 
 :- dynamic yes/1,no/1.
 
-verify(P,S) :-
+verify(S) :-
    (yes(S) -> true ;
     (no(S) -> fail ;
-     ask(P,S))).
+     ask(S))).
 
 undo :- retract(yes(_)),fail.
 undo :- retract(no(_)),fail.
 undo.
 
 
-brokenComponent(RepairCase,german_measles) :-
-symptom(RepairCase,fever),
-symptom(RepairCase,headache),
-symptom(RepairCase,runny_nose),
-symptom(RepairCase,rash).
+brokenComponent(german_measles) :-
+symptom(fever),
+symptom(headache),
+symptom(runny_nose),
+symptom(rash).
 
-brokenComponent(RepairCase,common_cold) :-
-symptom(RepairCase,headache),
-symptom(RepairCase,sneezing),
-symptom(RepairCase,sore_throat),
-symptom(RepairCase,runny_nose),
-symptom(RepairCase,chills).
+brokenComponent(common_cold) :-
+symptom(headache),
+symptom(sneezing),
+symptom(sore_throat),
+symptom(runny_nose),
+symptom(chills).
 
-brokenComponent(RepairCase,measles) :-
-symptom(RepairCase,cough),
-symptom(RepairCase,sneezing),
-symptom(RepairCase,runny_nose).
+brokenComponent(measles) :-
+symptom(cough),
+symptom(sneezing),
+symptom(runny_nose).
 
-brokenComponent(RepairCase,flu) :-
-symptom(RepairCase,fever),
-symptom(RepairCase,headache),
-symptom(RepairCase,body_ache),
-symptom(RepairCase,conjunctivitis),
-symptom(RepairCase,chills),
-symptom(RepairCase,sore_throat),
-symptom(RepairCase,runny_nose),
-symptom(RepairCase,cough).
+brokenComponent(flu) :-
+symptom(fever),
+symptom(headache),
+symptom(body_ache),
+symptom(conjunctivitis),
+symptom(chills),
+symptom(sore_throat),
+symptom(runny_nose),
+symptom(cough).
 
 
 
-brokenComponent(RepairCase,mumps) :-
-symptom(RepairCase,fever),
-symptom(RepairCase,swollen_glands).
+brokenComponent(mumps) :-
+symptom(fever),
+symptom(swollen_glands).
 
-brokenComponent(RepairCase,chicken_pox) :-
-symptom(RepairCase,fever),
-symptom(RepairCase,chills),
-symptom(RepairCase,body_ache),
-symptom(RepairCase,rash).
+brokenComponent(chicken_pox) :-
+symptom(fever),
+symptom(chills),
+symptom(body_ache),
+symptom(rash).
 
 write_list([]).
 write_list([Term| Terms]) :-
@@ -105,18 +100,8 @@ char_code(Reply, Code).
 % Other predicates
 
 % Predicate to read a yes/no answer
-read_yes_no(Answer) :-
-    read_line_to_string(user_input, Input),
-    (   (Input == yes ; Input == y) ->
-        Answer = true
-    ;   (Input == no ; Input == n) ->
-        Answer = false
-    ;   write('Invalid input. Please enter yes, y, n or no.'), nl,
-        read_yes_no(Answer)
-    ).
-
-ask(RepairCase, Question) :-
-	write(Question),
+ask(Question) :-
+	write_list([Question, " (yes/y/no/n) "]),
 	read_line_to_string(user_input, N),
 	( (N == "yes" ; N == "y") -> assert(yes(Question)) ;
        assert(no(Question)), fail).
