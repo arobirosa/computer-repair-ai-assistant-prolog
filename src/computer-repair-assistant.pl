@@ -88,10 +88,10 @@ brokenComponent(disconnected_ram_modules) :-
 %%%%%% INTERNAL PREDICATES OF THE EXPERT SYSTEM. DO NOT TOUCH.
 
 % Informs the engine that these predicates will change during execution. They are inputted by the user.
-:- dynamic yes/1,no/1.
+:- dynamic symptom_present/1,symptom_absent/1.
 
-check(S) :- (yes(S) -> true ; (no(S) -> fail ; ask_yes_no(S))).
-delete_all_symptoms :- ((retract(yes(_)), retract(no(_)),fail) ; true).
+check(S) :- (symptom_present(S) -> true ; (symptom_absent(S) -> fail ; ask_and_store_answer(S))).
+delete_all_symptoms :- ((retract(symptom_present(_)), retract(symptom_absent(_)),fail) ; true).
 
 start :- delete_all_symptoms, diagnose.
 
@@ -109,9 +109,9 @@ write_all([]).
 write_all([Term| Terms]) :- write(Term),
 write_all(Terms).
 
-% Predicate to read a yes/no answer
-ask_yes_no(Question) :-
+% Predicate to read a yes/no answer and store answer in the knowledge base
+ask_and_store_answer(Question) :-
 	write_all([Question, ' (yes/y/no/n) ']),
 	read_line_to_string(user_input, N),
-	( (N == "yes" ; N == "y") -> assert(yes(Question)) ;
-       assert(no(Question)), fail).
+	( (N == "yes" ; N == "y") -> assert(symptom_present(Question)) ;
+       assert(symptom_absent(Question)), fail).
