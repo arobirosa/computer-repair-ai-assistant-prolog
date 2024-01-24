@@ -28,14 +28,14 @@ TODO Complete this section
 * How the prolog engine works is difficult to understand. Small changes like using single quotes for strings will create atoms which behave different from string and the following code will never be true:
 
 ~~~
-% Predicate to read a yes/no answer
-ask(Question) :-
-	write_list([Question, ' (yes/y/no/n) ']),
+% Predicate to read a yes/no answer and store the answer in the knowledge base
+ask_and_store_answer(Question) :-
+	write_all([Question, ' (yes/y/no/n) ']),
 	read_line_to_string(user_input, N),
-	( (N == 'yes' ; N == 'y') -> assert(yes(Question)) ;
-       assert(no(Question)), fail).
+	( (N == 'yes' ; N == 'y') -> assert(symptom_present(Question)) ;
+       assert(symptom_absent(Question)), fail).
 ~~~
-* There aren't any prolog programmers in the market. Prolog is more difficult to understand as a language than object-oriented or imperative languages like Java or Python
+* There aren't any prolog programmers in the market. Prolog is exmore difficult to understand as a language than object-oriented or imperative languages like Java or Python
 * Most prolog distributions don't seem to be actively used in commercial projects
 
 ## Neutral points

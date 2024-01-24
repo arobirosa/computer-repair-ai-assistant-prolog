@@ -109,7 +109,7 @@ write_all([]).
 write_all([Term| Terms]) :- write(Term),
 write_all(Terms).
 
-% Predicate to read a yes/no answer and store answer in the knowledge base
+% Predicate to read a yes/no answer and store the answer in the knowledge base
 ask_and_store_answer(Question) :-
 	write_all([Question, ' (yes/y/no/n) ']),
 	read_line_to_string(user_input, N),
