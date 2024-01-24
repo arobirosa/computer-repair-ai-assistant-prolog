@@ -87,8 +87,6 @@ swipl src/computer-repair-assistant.pl
 
 # Acknowledgment
 
-This project is based on medical expert system developed by * [Shiddika Jahan Bushra](https://github.com/sjbushra/Medical-Diagnosis-system-using-Prolog/)
-
 The diagnostic and symptoms were inspired from the diagrams of this [expert system created by Gena Charnukha](https://roboticsandenergy.com/projects/expert-program-computer-project/). Because I structured my expert system in another way, no code from this project was used.
 
 # Evaluation of Prolog implementations and development environments
@@ -111,7 +109,7 @@ The following ones were evaluated for use in this project:
 
 # Other projects using prolog to create (medical) expert systems:
 
-* [Medical Diagnosis system using Prolog created by Shiddika Jahan Bushra](https://github.com/sjbushra/Medical-Diagnosis-system-using-Prolog/)
+* [Medical Diagnosis system using Prolog created by Shiddika Jahan Bushra](https://github.com/sjbushra/Medical-Diagnosis-system-using-Prolog/) This is a clean way to create an expert system. Please be aware that the license of the code is unclear so it is better not to reuse that code.
 * [NephroDoctor created by Nicola Dileo and Tommaso Viterbo](https://github.com/nicoladileo/NephroDoctor) Shows how to make diagnostic using  probability, modify the answers and save the symptoms to a file
 * [Medical Expert System for COVID-19 from Rojay White and others](https://github.com/R-White-0/Medical-Expert-System) It uses 3 or more symptoms 
   to diagnostic COVID-19. It shows how to use windows, messages boxes and checkboxes to ask for user imput with Prolog. Notice: Works locally but not on the online version of SWI Prolog.
