@@ -3,9 +3,9 @@
 %
 % Predicates
 %   start   Starts a new repair case. It removes all old facts entered by the user.
-%
+%   report  Generates a report with present and absent symptoms
 % TODO The following predicates must be implemented
-%   report  Generates a report
+%
 %   change  Modifies the answers
 %   save(repairCaseID)  Saves the case into the database
 %   load(repairCaseID)  Loads the case from the database
@@ -101,6 +101,20 @@ diagnose :-
 
 diagnose :-
     write('I can not diagnose the broken component. Please contact a technician.'),nl.
+
+% Print all symptom_present/1 predicates
+print_symptom_present :-
+    write('=== Questions answered with yes === '), nl,
+    forall(symptom_present(Symptom), writeln(Symptom)),
+    nl.
+print_symptom_absent :-
+    write('=== Questions answered with no ==='), nl,
+    forall(symptom_absent(Symptom), writeln(Symptom)),
+    nl.
+report :-
+    print_symptom_present,
+    print_symptom_absent,
+    write('=== End of report ==='), nl.
 
 %%%%%%% Other predicates %%%%%%%%%
 
