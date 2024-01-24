@@ -90,23 +90,17 @@ brokenComponent(disconnected_ram_modules) :-
 % Informs the engine that these predicates will change during execution. They are inputted by the user.
 :- dynamic yes/1,no/1.
 
+check(S) :- (yes(S) -> true ; (no(S) -> fail ; ask_yes_no(S))).
+delete_all_symptoms :- ((retract(yes(_)), retract(no(_)),fail) ; true).
+
+start :- delete_all_symptoms, diagnose.
+
 diagnose :-
     brokenComponent(Disease),
     write_all(['The broken component probably is ',Disease,'.']),nl.
 
 diagnose :-
     write('I can not diagnose the broken component. Please contact a technician.'),nl.
-
-check(S) :-
-   (yes(S) -> true ;
-    (no(S) -> fail ;
-     ask_yes_no(S))).
-
-delete_all_symptoms :- retract(yes(_)),fail.
-delete_all_symptoms :- retract(no(_)),fail.
-delete_all_symptoms.
-
-start :- delete_all_symptoms, diagnose.
 
 %%%%%%% Other predicates %%%%%%%%%
 
