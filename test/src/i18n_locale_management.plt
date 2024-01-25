@@ -6,7 +6,7 @@
 %
 
 :- begin_tests(i18n).
-:- consult('../../src/computer-repair-assistant.pl').
+:- consult('../../src/computer_repair_assistant.pl').
 
 test(defaultLocaleIsEnglish) :-
     store_locale(en),

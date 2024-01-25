@@ -6,7 +6,7 @@
 %
 
 :- begin_tests(i18n).
-:- consult('../../src/computer-repair-assistant.pl').
+:- consult('../../src/computer_repair_assistant.pl').
 
 :- multifile user:message_hook/3.
 :- dynamic captured_string/1.

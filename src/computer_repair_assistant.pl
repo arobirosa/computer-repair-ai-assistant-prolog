@@ -13,6 +13,7 @@
 :- discontiguous symptom/1.
 
 :- consult('translations_en.pl').
+:- consult('translations_es.pl').
 
 %%%%%%% DEFINITION OF SYMPTOMS
 
