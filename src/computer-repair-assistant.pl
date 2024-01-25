@@ -91,7 +91,7 @@ brokenComponent(disconnected_ram_modules) :-
 :- dynamic symptom_present/1,symptom_absent/1.
 
 check(S) :- (symptom_present(S) -> true ; (symptom_absent(S) -> fail ; ask_and_store_answer(S))).
-delete_all_symptoms :- ((retract(symptom_present(_)), retract(symptom_absent(_)),fail) ; true).
+delete_all_symptoms :- ((retractall(symptom_present(_)), retractall(symptom_absent(_)),fail) ; true).
 
 start :- delete_all_symptoms, diagnose.
 
