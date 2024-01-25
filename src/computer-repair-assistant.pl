@@ -10,10 +10,13 @@
 %   save(repairCaseID)  Saves the case into the database
 %   load(repairCaseID)  Loads the case from the database
 
+:- discontiguous symptom/1.
+
 %%%%%%% DEFINITION OF SYMPTOMS
 
-% TODO Add conditions which are negated.
-symptom(battery_light_do_not_turn_on) :- check("Is the battery light turned off after the power button is turned on?").
+symptom(A) :- check(A).
+symptom(B) :- check(B).
+
 symptom(battery_light_turns_on) :- check("Is the battery light turned on after the power button is turned on?").
 symptom(hard_disk_spins_on_a_second_motherboard) :- check("Does the hard disk spin when connected to a second motherboard?").
 symptom(known_working_hard_disk_do_not_spin_on_motherboard) :- check("Does a hard disk which is known to work don't spin on the motherboard?").
@@ -26,7 +29,8 @@ symptom(system_do_not_work_after_reinserting_power_cable_connector) :- check("Th
 symptom(system_works_after_reinserting_power_cable_connector) :- check("The system turns on after taking out and reinserting the power connector from the PSU to the motherboard, right?").
 symptom(system_do_not_work_with_another_power_cord) :- check("The system don't turn on with another power cord, right?").
 symptom(system_has_a_power_supply_unit) :- check("Does the system have a power supply unit? Laptops don't have one, while desktops do.").
-symptom(system_works_after_reinserting_the_ram_modules) :- check("After you remove the RAM module(s) and insert them in the slot, does the system work?").
+symptom(system_works_after_reinserting_the_ram_modules) :- check("After you remove the RAM module(s)" ,
+    " and insert them in the slot, does the system work?").
 symptom(system_works_on_another_outlet) :- check("Does the system work in another power outlet?").
 symptom(system_works_with_a_new_motherboard) :- check("Does the computer work with a new motherboard?").
 symptom(system_works_with_a_new_power_supply_unit) :- check("Does the computer work with a new power supply?").
@@ -34,27 +38,31 @@ symptom(system_works_with_another_power_cord) :- check("Does the computer work w
 symptom(system_works_with_old_modules) :- check("Does the computer work with the old RAM module(s)?").
 
 %%%%%%% DEFINITION OF BROKEN COMPONENT
+brokenComponent(yesAyesB) :- symptom("A"), symptom("B").
+brokenComponent(yesAnoB) :- symptom("A"), is_absent("B").
+brokenComponent(noAyesB) :- is_absent("A"), symptom("B").
+brokenComponent(noAnoB) :- is_absent("A"), is_absent("B").
 
 brokenComponent(no_electricity_on_the_power_outlet) :-
     symptom(system_do_not_turn_on),
-    symptom(battery_light_do_not_turn_on),
+    is_absent(symptom(battery_light_turns_on)),
     symptom(system_works_on_another_outlet).
 
 brokenComponent(power_cord) :-
     symptom(system_do_not_turn_on),
-    symptom(battery_light_do_not_turn_on),
+    is_absent(symptom(battery_light_turns_on)),
     symptom(system_works_with_another_power_cord).
 
 brokenComponent(motherboard_power_cable_is_disconnected) :-
     symptom(system_do_not_turn_on),
-    symptom(battery_light_do_not_turn_on),
+    is_absent(symptom(battery_light_turns_on)),
     symptom(system_do_not_work_with_another_power_cord), % TODO Add conditions which are negated.
     symptom(system_works_after_reinserting_power_cable_connector),
     symptom(hard_disk_spins_on_a_second_motherboard).
 
 brokenComponent(motherboard_is_burnt) :-
     symptom(system_do_not_turn_on),
-    symptom(battery_light_do_not_turn_on),
+    is_absent(symptom(battery_light_turns_on)),
     symptom(system_do_not_work_with_another_power_cord), % TODO Add conditions which are negated.
     symptom(system_do_not_work_after_reinserting_power_cable_connector),
     % The next line shows how two tests are possible to diagnose. It applies an OR condition
@@ -63,7 +71,7 @@ brokenComponent(motherboard_is_burnt) :-
 
 brokenComponent(power_supply_unit_is_burnt) :-
     symptom(system_do_not_turn_on),
-    symptom(battery_light_do_not_turn_on),
+    is_absent(symptom(battery_light_turns_on)),
     symptom(system_do_not_work_with_another_power_cord), % TODO Add conditions which are negated.
     symptom(system_has_a_power_supply_unit),
     symptom(system_do_not_work_after_reinserting_power_cable_connector),
@@ -91,6 +99,7 @@ brokenComponent(disconnected_ram_modules) :-
 :- dynamic symptom_present/1,symptom_absent/1.
 
 check(S) :- (symptom_present(S) -> true ; (symptom_absent(S) -> fail ; ask_and_store_answer(S))).
+is_absent(S) :- (symptom_present(S) -> fail ; (symptom_absent(S) -> true ; ask_and_store_answer(S))).
 delete_all_symptoms :- ((retractall(symptom_present(_)), retractall(symptom_absent(_)),fail) ; true).
 
 start :- delete_all_symptoms, diagnose.
