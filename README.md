@@ -10,7 +10,7 @@ KRRs **might** be superior to Machine Learning (ML) in this use case because:
 * The reasoning has high-precision when no probabilities are used
 * Does not depend on a large number of examples. This means that it is not affected by training bias
 
-Under the condition that it is **easy to represent the domain knowledge** interviewing experts in the aread or reading textbooks, regulations, 
+Under the condition that it is **easy to represent the domain knowledge** interviewing experts in the area or reading textbooks, regulations, 
 contracts and other documents.
 
 [Source: ErgoAI FAQ](https://docs.google.com/document/d/1J_ASpGjDwgqMDzNgB-hqQC3keA8sIMZIHHs8gmJXG04/edit)
