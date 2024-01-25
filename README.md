@@ -35,6 +35,7 @@ ask_and_store_answer(Question) :-
 	( (N == 'yes' ; N == 'y') -> assert(symptom_present(Question)) ;
        assert(symptom_absent(Question)), fail).
 ~~~
+* SWI Prolog don't offer any internationalisation functions. It is expected that Prolog won't be interacting directly with the user as front-end
 * There aren't any prolog programmers in the market. Prolog is exmore difficult to understand as a language than object-oriented or imperative languages like Java or Python
 * Most prolog distributions don't seem to be actively used in commercial projects
 
@@ -49,9 +50,9 @@ ask_and_store_answer(Question) :-
 
 * Uses the prolog programming language
 - [ ] An user without training can use the assistant
-- [ ] An user with simple steps can add new causes and symptoms
-- [ ] The messages and inputs can be internationalised in different languages
-- [ ] The assistant works on Windows or can be used with a browser
+- [ ] An user with simple steps can add new causes and symptoms 
+* The messages and inputs can be internationalised in different languages Prolog isn't expected to be used interacting directly with the user, so I implemented i18n minimally.
+- [ ] The assistant works on Windows or can be used with a browser Prolog isn't expected to be used interacting directly with the user
 - [ ] Automatic tests for the assistant can be written
 
 ## Should Have
@@ -65,6 +66,10 @@ ask_and_store_answer(Question) :-
 ## Won't have
 
 * Diagnostic using probability because this can be better modelled with **machine learning** and this could make the diagnostic **difficult to explain**
+
+## TODO Tasks
+* Add copyright and contact information to all files
+
 
 # Installation
 

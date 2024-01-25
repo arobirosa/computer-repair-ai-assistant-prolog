@@ -12,30 +12,9 @@
 
 :- discontiguous symptom/1.
 
+:- consult('translations_en.pl').
+
 %%%%%%% DEFINITION OF SYMPTOMS
-
-symptom(A) :- check(A).
-symptom(B) :- check(B).
-
-symptom(battery_light_turns_on) :- check("Is the battery light turned on after the power button is turned on?").
-symptom(hard_disk_spins_on_a_second_motherboard) :- check("Does the hard disk spin when connected to a second motherboard?").
-symptom(known_working_hard_disk_do_not_spin_on_motherboard) :- check("Does a hard disk which is known to work don't spin on the motherboard?").
-symptom(ram_modules_not_compatible_with_motherboard) :- check("The speed and form of the RAM modules are not documented on the manual of the motherboard?").
-symptom(ram_modules_were_updated_lately) :- check("Was the RAM module changed lately?").
-symptom(screen_is_not_displaying_anything) :- check("Is display blank? It doesn't display anything").
-symptom(system_do_not_turn_on) :- check("The system don't turn on, right?").
-symptom(system_turns_on) :- check("Does the system turn on?").
-symptom(system_do_not_work_after_reinserting_power_cable_connector) :- check("The system don't turn on after taking out and reinserting the power connector from the PSU to the motherboard, right?").
-symptom(system_works_after_reinserting_power_cable_connector) :- check("The system turns on after taking out and reinserting the power connector from the PSU to the motherboard, right?").
-symptom(system_do_not_work_with_another_power_cord) :- check("The system don't turn on with another power cord, right?").
-symptom(system_has_a_power_supply_unit) :- check("Does the system have a power supply unit? Laptops don't have one, while desktops do.").
-symptom(system_works_after_reinserting_the_ram_modules) :- check("After you remove the RAM module(s)" ,
-    " and insert them in the slot, does the system work?").
-symptom(system_works_on_another_outlet) :- check("Does the system work in another power outlet?").
-symptom(system_works_with_a_new_motherboard) :- check("Does the computer work with a new motherboard?").
-symptom(system_works_with_a_new_power_supply_unit) :- check("Does the computer work with a new power supply?").
-symptom(system_works_with_another_power_cord) :- check("Does the computer work with a another power cord?").
-symptom(system_works_with_old_modules) :- check("Does the computer work with the old RAM module(s)?").
 
 %%%%%%% DEFINITION OF BROKEN COMPONENT
 brokenComponent(yesAyesB) :- symptom("A"), symptom("B").
@@ -45,24 +24,24 @@ brokenComponent(noAnoB) :- is_absent("A"), is_absent("B").
 
 brokenComponent(no_electricity_on_the_power_outlet) :-
     symptom(system_do_not_turn_on),
-    is_absent(symptom(battery_light_turns_on)),
+    is_absent(battery_light_turns_on),
     symptom(system_works_on_another_outlet).
 
 brokenComponent(power_cord) :-
     symptom(system_do_not_turn_on),
-    is_absent(symptom(battery_light_turns_on)),
+    is_absent(battery_light_turns_on),
     symptom(system_works_with_another_power_cord).
 
 brokenComponent(motherboard_power_cable_is_disconnected) :-
     symptom(system_do_not_turn_on),
-    is_absent(symptom(battery_light_turns_on)),
+    is_absent(battery_light_turns_on),
     symptom(system_do_not_work_with_another_power_cord), % TODO Add conditions which are negated.
     symptom(system_works_after_reinserting_power_cable_connector),
     symptom(hard_disk_spins_on_a_second_motherboard).
 
 brokenComponent(motherboard_is_burnt) :-
     symptom(system_do_not_turn_on),
-    is_absent(symptom(battery_light_turns_on)),
+    is_absent(battery_light_turns_on),
     symptom(system_do_not_work_with_another_power_cord), % TODO Add conditions which are negated.
     symptom(system_do_not_work_after_reinserting_power_cable_connector),
     % The next line shows how two tests are possible to diagnose. It applies an OR condition
@@ -71,7 +50,7 @@ brokenComponent(motherboard_is_burnt) :-
 
 brokenComponent(power_supply_unit_is_burnt) :-
     symptom(system_do_not_turn_on),
-    is_absent(symptom(battery_light_turns_on)),
+    is_absent(battery_light_turns_on),
     symptom(system_do_not_work_with_another_power_cord), % TODO Add conditions which are negated.
     symptom(system_has_a_power_supply_unit),
     symptom(system_do_not_work_after_reinserting_power_cable_connector),
@@ -98,11 +77,12 @@ brokenComponent(disconnected_ram_modules) :-
 % Informs the engine that these predicates will change during execution. They are inputted by the user.
 :- dynamic symptom_present/1,symptom_absent/1.
 
-check(S) :- (symptom_present(S) -> true ; (symptom_absent(S) -> fail ; ask_and_store_answer(S))).
+symptom(S) :- (symptom_present(S) -> true ; (symptom_absent(S) -> fail ; ask_and_store_answer(S))).
 is_absent(S) :- (symptom_present(S) -> fail ; (symptom_absent(S) -> true ; ask_and_store_answer(S))).
 delete_all_symptoms :- ((retractall(symptom_present(_)), retractall(symptom_absent(_)),fail) ; true).
 
-start :- delete_all_symptoms, diagnose.
+start :- start("en"). % The default locale is English
+start(Locale) :- store_locale(Locale), delete_all_symptoms, diagnose.
 
 diagnose :-
     brokenComponent(Disease),
@@ -126,15 +106,27 @@ report :-
     write('=== End of report ==='), nl.
 
 %%%%%%% Other predicates %%%%%%%%%
+print_localized_message(Key) :-
+    current_locale(Locale),
+    print_localized_message(Key, Locale).
+
+print_localized_message(Key, Locale) :-
+    MessageTerm =.. [Key, Locale],
+    print_message(information, MessageTerm).
+
+% Store the current locale. If it isn't supported, fallback to English
+:- dynamic current_locale/1.
+store_locale(Locale) :- (Locale == "en" ; fail), retractall(current_locale(_)), assert(current_locale(Locale)).
+store_locale(Locale) :- store_locale(en).
 
 % Prints the elements of the list
-write_all([]).
-write_all([Term| Terms]) :- write(Term),
-write_all(Terms).
+print_localized_all([]).
+print_localized_all([Term| Terms]) :- print_localized_message(Term),
+print_localized_all(Terms).
 
 % Predicate to read a yes/no answer and store the answer in the knowledge base
 ask_and_store_answer(Question) :-
-	write_all([Question, ' (yes/y/no/n) ']),
+	print_localized_all([Question, answer_keys_list]),
 	read_line_to_string(user_input, N),
 	( (N == "yes" ; N == "y") -> assert(symptom_present(Question)) ;
        assert(symptom_absent(Question)), fail).
