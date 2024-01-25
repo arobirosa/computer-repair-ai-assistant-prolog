@@ -9,16 +9,15 @@
 :- consult('../../src/computer-repair-assistant.pl').
 
 test(defaultLocaleIsEnglish) :-
-    store_locale("en"),
-    current_locale(en).
+    store_locale(en),
+    current_locale(en), !.
 
-/*
 test(fallbackToEnglishIfTheLocaleIsUnknown) :-
-    store_locale("en"),
-    current_locale(en).
+    store_locale(en),
+    current_locale(en), !.
 
 test(setsSpanishLocale) :-
-    store_locale("es"),
-    current_locale(es).*/
+    store_locale(es),
+    current_locale(es), !.
 
 :- end_tests(i18n).

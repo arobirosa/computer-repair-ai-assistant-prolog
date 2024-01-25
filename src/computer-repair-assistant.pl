@@ -86,7 +86,7 @@ start(Locale) :- store_locale(Locale), delete_all_symptoms, diagnose.
 
 diagnose :-
     brokenComponent(Disease),
-    write_all(['The broken component probably is ',Disease,'.']),nl.
+    print_localized_all([broken_component_is,Disease]),nl.
 
 diagnose :-
     write('I can not diagnose the broken component. Please contact a technician.'),nl.
@@ -114,9 +114,10 @@ print_localized_message(Key, Locale) :-
     MessageTerm =.. [Key, Locale],
     print_message(information, MessageTerm).
 
-% Store the current locale. If it isn't supported, fallback to English
+% Store the current locale. If it isn't supported, fallback to English.
 :- dynamic current_locale/1.
-store_locale(Locale) :- (Locale == "en" ; fail), retractall(current_locale(_)), assert(current_locale(Locale)).
+store_locale(Locale) :- (member(Locale, [en,es]) ; fail),
+    retractall(current_locale(_)), assert(current_locale(Locale)).
 store_locale(_Locale) :- store_locale(en).
 
 % Prints the elements of the list
