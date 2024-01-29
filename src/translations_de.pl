@@ -24,5 +24,11 @@ prolog:message(system_works_with_a_new_power_supply_unit(de)) --> ["Funktioniert
 prolog:message(system_works_with_another_power_cord(de)) --> ["Funktioniert der Computer mit einem anderen Netzkabel?"].
 prolog:message(system_works_with_old_modules(de)) --> ["Funktioniert der Computer mit dem/den alten RAM-Modul(en)?"].
 
-prolog:message(answer_keys_list(de)) --> ["' (yes/y/no/n) '"]. % TODO Translate the keys
+prolog:message(questions_answered_yes(en)) --> ["=== Mit ja beantwortete Fragen === ", nl].
+prolog:message(questions_answered_no(en)) --> ["=== Mit nein beantwortete Fragen === ", nl].
+prolog:message(questions_answered_report_end(en)) --> ["=== Ende des Berichts ===", nl].
+
+prolog:message(answer_keys_list(de)) --> [" (yes/y/no/n) "]. % TODO Translate the keys
 prolog:message(broken_component_is(en)) --> ["Die defekte Komponente ist wahrscheinlich "].
+prolog:message(unable_to_diagnose_broken_component(en)) --> ["Ich kann nicht herausfinden, welche Komponente kaputt ist. ",
+    "Bitte wenden Sie sich an einen Techniker.", nl].

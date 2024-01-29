@@ -14,6 +14,7 @@
 
 :- consult('translations_en.pl').
 :- consult('translations_es.pl').
+:- consult('translations_de.pl').
 
 %%%%%%% DEFINITION OF SYMPTOMS
 
@@ -90,21 +91,21 @@ diagnose :-
     print_localized_all([broken_component_is,Disease]),nl.
 
 diagnose :-
-    write('I can not diagnose the broken component. Please contact a technician.'),nl.
+    print_localized_message(unable_to_diagnose_broken_component).
 
 % Print all symptom_present/1 predicates
 print_symptom_present :-
-    write('=== Questions answered with yes === '), nl,
-    forall(symptom_present(Symptom), writeln(Symptom)),
+    print_localized_message(questions_answered_yes),
+    forall(symptom_present(Symptom), (print_localized_message(Symptom), nl)),
     nl.
 print_symptom_absent :-
-    write('=== Questions answered with no ==='), nl,
-    forall(symptom_absent(Symptom), writeln(Symptom)),
+    print_localized_message(questions_answered_no),
+    forall(symptom_absent(Symptom), (print_localized_message(Symptom), nl)),
     nl.
 report :-
     print_symptom_present,
     print_symptom_absent,
-    write('=== End of report ==='), nl.
+    print_localized_message(questions_answered_report_end).
 
 %%%%%%% Other predicates %%%%%%%%%
 print_localized_message(Key) :-

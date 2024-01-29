@@ -26,5 +26,10 @@ prolog:message(system_works_with_a_new_power_supply_unit(en)) --> ["Does the com
 prolog:message(system_works_with_another_power_cord(en)) --> ["Does the computer work with a another power cord?"].
 prolog:message(system_works_with_old_modules(en)) --> ["Does the computer work with the old RAM module(s)?"].
 
+prolog:message(questions_answered_yes(en)) --> ["=== Questions answered with yes === ", nl].
+prolog:message(questions_answered_no(en)) --> ["=== Questions answered with no === ", nl].
+prolog:message(questions_answered_report_end(en)) --> ["=== End of report ===", nl].
+
 prolog:message(answer_keys_list(en)) --> [" (yes/y/no/n) "].
 prolog:message(broken_component_is(en)) --> ["The broken component probably is "].
+prolog:message(unable_to_diagnose_broken_component(en)) --> ["I can not diagnose the broken component. Please contact a technician.", nl].
