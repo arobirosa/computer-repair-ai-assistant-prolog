@@ -21,7 +21,7 @@ TODO Complete this section
 
 ## Positive points
 * **Easy to understand how the assistant reached a conclusion**
-* **The knowledge base is incremental**
+* **The knowledge base is incremental**. The customer can start with a few cases and add new ones as soon as they appear in the real world.
 * The reasoning has high-precision when no probabilities are used
 * The [graphical debugger](https://www.swi-prolog.org/pldoc/man?section=start-guitracer) is useful and pretty easy to use, once you have set the breakpoints
 
@@ -36,27 +36,28 @@ ask_and_store_answer(Question) :-
 	( (N == 'yes' ; N == 'y') -> assert(symptom_present(Question)) ;
        assert(symptom_absent(Question)), fail).
 ~~~
-* There aren't any prolog programmers in the market. Prolog is exmore difficult to understand as a language than object-oriented or imperative languages like Java or Python
+* There aren't any prolog programmers in the market. Prolog is more difficult to understand as a language than object-oriented or imperative languages like Java or Python
 * Most prolog distributions don't seem to be actively used in commercial projects
 
 ## Neutral points
-
-* **It is difficult for a domain expert to add new diagnoses on his/her own.** For a fast repair, the symptoms which are easy to check must be written first on the prolog programm.
+* **It is difficult for a domain expert to add new diagnoses on his/her own.** For a fast repair, the symptoms which are easy to check must be written first on the prolog programme
+* The SWI Prolog implementation is mature for commercial projects
 * The IDEs have poor support for Prolog. Intellij IDEA supports Prolog syntax highlighting using the plug-in Logtalk. The Prolog plugin is not compatible with version 2022.1.3 
 
-# Requirements of the proof of concept
+# Requirements and features of the proof of concept
 
 ## Must have
 
-* ✓ Uses the prolog programming language 
-* ✓ The user can enter that a symptom is absent
+✓ Uses the prolog programming language \
+✓ The user can enter that a symptom is absent \
 - [ ] An user without training can use the assistant
 - [ ] An user with simple steps can add new causes and symptoms 
-* ✓ The messages and inputs can be internationalised in different languages Prolog isn't expected to be used interacting directly with the user, so I implemented this minimally.
+✓ The messages and inputs can be internationalised in different languages Prolog isn't expected to be used interacting directly with the user, so I implemented this minimally. \
 - [ ] The assistant works on Windows or can be used with a browser Prolog isn't expected to be used interacting directly with the user
-* ✓ Automatic tests for the assistant can be written
+✓ Automatic tests for the assistant can be written \
 
 ## Should Have
+✓ It is possible to log errors, warnings, informational and debug messages. On SWI Prolog this is done with print_message/1 as with the i18n \
 - [ ] The entered symptoms can be saved. And an user can restored a previously saved session
 - [ ] The assistant can be integrated in a website or delivered as a separated programme
 - [ ] It is possible to add causes which only affect some computer models

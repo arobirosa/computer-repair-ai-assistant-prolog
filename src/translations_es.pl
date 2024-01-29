@@ -25,5 +25,5 @@ prolog:message(system_works_with_a_new_power_supply_unit(es)) --> ["¿Funciona e
 prolog:message(system_works_with_another_power_cord(es)) --> ["¿Funciona el ordenador con otro cable de alimentación?"].
 prolog:message(system_works_with_old_modules(es)) --> ["¿Funciona el ordenador con los módulos RAM antiguos?"].
 
-prolog:message(answer_keys_list(es)) --> ["' (yes/y/no/n) '"]. % TODO Translate the keys
+prolog:message(answer_keys_list(es)) --> [" (yes/y/no/n) "]. % TODO Translate the keys
 prolog:message(broken_component_is(es)) --> ["El componente roto es probablemente "].
