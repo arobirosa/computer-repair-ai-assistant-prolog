@@ -92,11 +92,11 @@ diagnose :-
 % Print all symptom_present/1 predicates
 print_symptom_present :-
     print_localized_message(questions_answered_yes),
-    forall(symptom_present(Symptom), (print_localized_message(Symptom), nl)),
+    forall(symptom_present(Symptom), print_localized_message(Symptom)),
     nl.
 print_symptom_absent :-
     print_localized_message(questions_answered_no),
-    forall(symptom_absent(Symptom), (print_localized_message(Symptom), nl)),
+    forall(symptom_absent(Symptom), print_localized_message(Symptom)),
     nl.
 report :-
     print_symptom_present,
@@ -127,5 +127,12 @@ print_localized_all(Terms).
 ask_and_store_answer(Question) :-
 	print_localized_all([Question, answer_keys_list]),
 	read_line_to_string(user_input, N),
-	( (N == "yes" ; N == "y") -> assert(symptom_present(Question)) ;
+	current_locale(Locale),
+	answer_yes_possibilities(Locale, ValidAnswers),
+	( member(N, ValidAnswers) -> assert(symptom_present(Question)) ;
        assert(symptom_absent(Question)), fail).
+
+% To inform prolog, that there are many predicates with different locales, these must be together in the same file
+answer_yes_possibilities(en, [ "yes", "y", "Yes", "Y"]).
+answer_yes_possibilities(de, ["ja", "Ja", "j", "J"]).
+answer_yes_possibilities(es, [ "si", "s", "Si", "Sí", "sí"]).

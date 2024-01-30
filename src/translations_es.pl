@@ -34,6 +34,6 @@ prolog:message(questions_answered_yes(es)) --> ["=== Preguntas contestadas con s
 prolog:message(questions_answered_no(es)) --> ["=== Preguntas contestadas con no === ", nl].
 prolog:message(questions_answered_report_end(es)) --> ["=== Fin del informe ===", nl].
 
-prolog:message(answer_keys_list(es)) --> [" (yes/y/no/n) "]. % TODO Translate the keys
+prolog:message(answer_keys_list(es)) --> [" (si/s/no/n) "].
 prolog:message(diagnose_is(es)) --> ["La causa del problema es: "].
 prolog:message(unable_to_diagnose_broken_component(es)) --> ["No puedo diagnosticar el problema. ", "Póngase en contacto con un técnico.", nl].

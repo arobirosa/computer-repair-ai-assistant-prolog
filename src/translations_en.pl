@@ -5,7 +5,6 @@
 :- multifile
         prolog:message//1.
 
-
 prolog:message(battery_light_turns_on(en)) --> ["Is the battery light turned on after the power button is turned on?"].
 prolog:message(hard_disk_spins_on_a_second_motherboard(en)) --> ["Does the hard disk spin when connected to a second motherboard?"].
 prolog:message(known_working_hard_disk_do_not_spin_on_motherboard(en)) --> ["Does a hard disk which is known to work don't spin on the motherboard?"].

@@ -2,7 +2,7 @@
 % This file contain all the translations in German from Germany.
 
 :- multifile
-        prolog:message//1.
+          prolog:message//1.
 
 prolog:message(battery_light_turns_on(de)) --> ["Schaltet sich das Batterielicht ein, nachdem der Netzschalter eingeschaltet wurde?"].
 prolog:message(hard_disk_spins_on_a_second_motherboard(de)) --> ["Läuf die Festplatte, wenn sie an ein zweites Motherboard angeschlossen ist?"].
@@ -33,7 +33,7 @@ prolog:message(questions_answered_yes(de)) --> ["=== Mit ja beantwortete Fragen 
 prolog:message(questions_answered_no(de)) --> ["=== Mit nein beantwortete Fragen === ", nl].
 prolog:message(questions_answered_report_end(de)) --> ["=== Ende des Berichts ===", nl].
 
-prolog:message(answer_keys_list(de)) --> [" (yes/y/no/n) "]. % TODO Translate the keys
+prolog:message(answer_keys_list(de)) --> [" (ja/j/nein/n) "].
 prolog:message(diagnose_is(de)) --> ["Die Diagnose ist: "].
 prolog:message(unable_to_diagnose_broken_component(de)) --> ["Ich kann nicht herausfinden, welche Komponente kaputt ist. ",
     "Bitte wenden Sie sich an einen Techniker.", nl].
