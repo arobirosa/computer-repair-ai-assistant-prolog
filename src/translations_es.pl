@@ -25,10 +25,18 @@ prolog:message(system_works_with_a_new_power_supply_unit(es)) --> ["¿Funciona e
 prolog:message(system_works_with_another_power_cord(es)) --> ["¿Funciona el ordenador con otro cable de alimentación?"].
 prolog:message(system_works_with_old_modules(es)) --> ["¿Funciona el ordenador con los módulos RAM antiguos?"].
 
+prolog:message(no_electricidad_en_la_toma_de_corriente(es)) --> ["No hay electricidad en el tomacorriente"].
+prolog:message(power_cord_is_broken(es)) --> ["El cable de alimentación está roto"].
+prolog:message(motherboard_power_cable_is_disconnected(es)) --> ["El cable que da electricidad a la placa base se ha desconectado"].
+prolog:message(motherboard_is_burnt(es)) --> ["La placa base está quemada"].
+prolog:message(power_supply_unit_is_burnt(es)) --> ["La fuente de alimentación está quemada"].
+prolog:message(incompatible_ram_modules(es)) --> ["El módulo RAM es incompatible con la placa base"].
+prolog:message(disconnected_ram_modules(es)) --> ["El módulo RAM se ha desconectado de la placa base"].
+
 prolog:message(questions_answered_yes(en)) --> ["=== Preguntas contestadas con sí === ", nl].
 prolog:message(questions_answered_no(es)) --> ["=== Preguntas contestadas con no === ", nl].
 prolog:message(questions_answered_report_end(es)) --> ["=== Fin del informe ===", nl].
 
 prolog:message(answer_keys_list(es)) --> [" (yes/y/no/n) "]. % TODO Translate the keys
-prolog:message(broken_component_is(es)) --> ["El componente roto es probablemente "].
+prolog:message(diagnose_is(es)) --> ["La causa del problema es: "].
 prolog:message(unable_to_diagnose_broken_component(es)) --> ["No puedo diagnosticar el problema. ", "Póngase en contacto con un técnico.", nl].

@@ -19,17 +19,13 @@
 %%%%%%% DEFINITION OF SYMPTOMS
 
 %%%%%%% DEFINITION OF BROKEN COMPONENT
-brokenComponent(yesAyesB) :- symptom("A"), symptom("B").
-brokenComponent(yesAnoB) :- symptom("A"), is_absent("B").
-brokenComponent(noAyesB) :- is_absent("A"), symptom("B").
-brokenComponent(noAnoB) :- is_absent("A"), is_absent("B").
 
 brokenComponent(no_electricity_on_the_power_outlet) :-
     symptom(system_do_not_turn_on),
     is_absent(battery_light_turns_on),
     symptom(system_works_on_another_outlet).
 
-brokenComponent(power_cord) :-
+brokenComponent(power_cord_is_broken) :-
     symptom(system_do_not_turn_on),
     is_absent(battery_light_turns_on),
     symptom(system_works_with_another_power_cord).
@@ -88,7 +84,7 @@ start(Locale) :- store_locale(Locale), delete_all_symptoms, diagnose.
 
 diagnose :-
     brokenComponent(Disease),
-    print_localized_all([broken_component_is,Disease]),nl.
+    print_localized_all([diagnose_is,Disease]),nl.
 
 diagnose :-
     print_localized_message(unable_to_diagnose_broken_component).
