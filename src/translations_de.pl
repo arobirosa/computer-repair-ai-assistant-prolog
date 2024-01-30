@@ -10,14 +10,11 @@ prolog:message(known_working_hard_disk_do_not_spin_on_motherboard(de)) --> ["Lä
 prolog:message(ram_modules_not_compatible_with_motherboard(de)) --> ["Die Geschwindigkeit und Typ der RAM-Module sind nicht im Handbuch des Motherboards dokumentiert?"].
 prolog:message(ram_modules_were_updated_lately(de)) --> ["Wurde das RAM-Modul in letzter Zeit ausgetauscht?"].
 prolog:message(screen_is_not_displaying_anything(de)) --> ["Ist der Bildschirm leer? Er zeigt nichts an"].
-prolog:message(system_do_not_turn_on(de)) --> ["Das System schaltet sich nicht ein, richtig?"].
 prolog:message(system_turns_on(de)) --> ["Schaltet sich das System ein?"].
-prolog:message(system_do_not_work_after_reinserting_power_cable_connector(de)) --> ["Das System schaltet sich nicht ein, nachdem der Stromanschluss vom Netzteil zum Motherboard herausgenommen und wieder eingesteckt wurde, richtig?"].
 prolog:message(system_works_after_reinserting_power_cable_connector(de)) --> ["Das System schaltet sich ein, nachdem der Stromstecker vom Netzteil zum Motherboard herausgenommen und wieder eingesteckt wurde, richtig?"].
-prolog:message(system_do_not_work_with_another_power_cord(de)) --> ["Das System schaltet sich nicht mit einem anderen Netzkabel ein, richtig?"].
 prolog:message(system_has_a_power_supply_unit(de)) --> ["Verfügt das System über ein Netzteil? Laptops haben keins, aber Desktops schon."].
-prolog:message(system_works_after_reinserting_the_ram_modules(de)) --> ["Nachdem Sie das/die RAM-Modul(e) entfernt" ,
-    " entfernt und in den Steckplatz eingesetzt haben, funktioniert das System?"].
+prolog:message(system_works_after_reinserting_the_ram_modules(de)) --> ["Nachdem Sie das RAM-Modul entfernt" ,
+    " und in den Steckplatz eingesetzt haben, funktioniert das System?"].
 prolog:message(system_works_on_another_outlet(de)) --> ["Funktioniert das System an einer anderen Steckdose?"].
 prolog:message(system_works_with_a_new_motherboard(de)) --> ["Funktioniert der Computer mit einem neuen Motherboard?"].
 prolog:message(system_works_with_a_new_power_supply_unit(de)) --> ["Funktioniert der Computer mit einem neuen Netzteil?"].

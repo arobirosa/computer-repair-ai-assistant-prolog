@@ -12,11 +12,8 @@ prolog:message(known_working_hard_disk_do_not_spin_on_motherboard(en)) --> ["Doe
 prolog:message(ram_modules_not_compatible_with_motherboard(en)) --> ["The speed and form of the RAM modules are not documented on the manual of the motherboard?"].
 prolog:message(ram_modules_were_updated_lately(en)) --> ["Was the RAM module changed lately?"].
 prolog:message(screen_is_not_displaying_anything(en)) --> ["Is display blank? It doesn't display anything"].
-prolog:message(system_do_not_turn_on(en)) --> ["The system don't turn on, right?"].
 prolog:message(system_turns_on(en)) --> ["Does the system turn on?"].
-prolog:message(system_do_not_work_after_reinserting_power_cable_connector(en)) --> ["The system don't turn on after taking out and reinserting the power connector from the PSU to the motherboard, right?"].
 prolog:message(system_works_after_reinserting_power_cable_connector(en)) --> ["The system turns on after taking out and reinserting the power connector from the PSU to the motherboard, right?"].
-prolog:message(system_do_not_work_with_another_power_cord(en)) --> ["The system don't turn on with another power cord, right?"].
 prolog:message(system_has_a_power_supply_unit(en)) --> ["Does the system have a power supply unit? Laptops don't have one, while desktops do."].
 prolog:message(system_works_after_reinserting_the_ram_modules(en)) --> ["After you remove the RAM module(s)" ,
     " and insert them in the slot, does the system work?"].

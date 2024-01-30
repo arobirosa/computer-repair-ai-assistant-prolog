@@ -10,11 +10,8 @@ prolog:message(known_working_hard_disk_do_not_spin_on_motherboard(es)) --> ["¿U
 prolog:message(ram_modules_not_compatible_with_motherboard(es)) --> ["¿La velocidad y la forma de los módulos RAM no están documentadas en el manual de la placa base?"].
 prolog:message(ram_modules_were_updated_lately(es)) --> ["¿Se ha cambiado el módulo RAM recientemente?"].
 prolog:message(screen_is_not_displaying_anything(es)) --> ["¿La pantalla está en blanco? No muestra nada"].
-prolog:message(system_do_not_turn_on(es)) --> ["El sistema no se enciende, ¿es cierto?"].
 prolog:message(system_turns_on(es)) --> ["¿Se enciende el sistema?"].
-prolog:message(system_do_not_work_after_reinserting_power_cable_connector(es)) --> ["El sistema no se enciende después de sacar y volver a insertar el conector de alimentación de la fuente de alimentación a la placa base, ¿verdad?"].
 prolog:message(system_works_after_reinserting_power_cable_connector(es)) --> ["El sistema se enciende después de sacar y volver a insertar el conector de alimentación de la PSU a la placa base, ¿verdad?"].
-prolog:message(system_do_not_work_with_another_power_cord(es)) --> ["El sistema no se enciende con otro cable de alimentación, ¿verdad?"].
 prolog:message(system_has_a_power_supply_unit(es)) --> ["¿El sistema tiene una fuente de alimentación (PSU)? ",
     "Los portátiles no la tienen, mientras que los ordenadores de sobremesa sí"].
 prolog:message(system_works_after_reinserting_the_ram_modules(es)) --> ["Después de retirar el módulo o módulos de RAM" ,

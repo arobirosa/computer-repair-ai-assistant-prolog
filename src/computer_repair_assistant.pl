@@ -21,41 +21,41 @@
 %%%%%%% DEFINITION OF BROKEN COMPONENT
 
 brokenComponent(no_electricity_on_the_power_outlet) :-
-    symptom(system_do_not_turn_on),
+    is_absent(system_turns_on),
     is_absent(battery_light_turns_on),
     symptom(system_works_on_another_outlet).
 
 brokenComponent(power_cord_is_broken) :-
-    symptom(system_do_not_turn_on),
+    is_absent(system_turns_on),
     is_absent(battery_light_turns_on),
     symptom(system_works_with_another_power_cord).
 
 brokenComponent(motherboard_power_cable_is_disconnected) :-
-    symptom(system_do_not_turn_on),
+    is_absent(system_turns_on),
     is_absent(battery_light_turns_on),
-    symptom(system_do_not_work_with_another_power_cord), % TODO Add conditions which are negated.
+    is_absent(system_works_with_another_power_cord),
     symptom(system_works_after_reinserting_power_cable_connector),
     symptom(hard_disk_spins_on_a_second_motherboard).
 
 brokenComponent(motherboard_is_burnt) :-
-    symptom(system_do_not_turn_on),
+    is_absent(system_turns_on),
     is_absent(battery_light_turns_on),
-    symptom(system_do_not_work_with_another_power_cord), % TODO Add conditions which are negated.
-    symptom(system_do_not_work_after_reinserting_power_cable_connector),
+    is_absent(system_works_with_another_power_cord),
+    is_absent(system_works_after_reinserting_power_cable_connector),
     % The next line shows how two tests are possible to diagnose. It applies an OR condition
     (symptom(hard_disk_spins_on_a_second_motherboard);symptom(known_working_hard_disk_do_not_spin_on_motherboard)),
     symptom(system_works_with_a_new_motherboard).
 
 brokenComponent(power_supply_unit_is_burnt) :-
-    symptom(system_do_not_turn_on),
+    is_absent(system_turns_on),
     is_absent(battery_light_turns_on),
-    symptom(system_do_not_work_with_another_power_cord), % TODO Add conditions which are negated.
+    is_absent(system_works_with_another_power_cord),
     symptom(system_has_a_power_supply_unit),
-    symptom(system_do_not_work_after_reinserting_power_cable_connector),
+    is_absent(system_works_after_reinserting_power_cable_connector),
     symptom(system_works_with_a_new_power_supply_unit).
 
 brokenComponent(incompatible_ram_modules) :-
-    symptom(system_turns_on), % TODO Add conditions which are negated.
+    symptom(system_turns_on),
     symptom(battery_light_turns_on),
     symptom(screen_is_not_displaying_anything),
     symptom(ram_modules_were_updated_lately),
@@ -63,7 +63,7 @@ brokenComponent(incompatible_ram_modules) :-
     symptom(system_works_with_old_modules).
 
 brokenComponent(disconnected_ram_modules) :-
-    symptom(system_turns_on), % TODO Add conditions which are negated.
+    symptom(system_turns_on),
     symptom(battery_light_turns_on),
     symptom(screen_is_not_displaying_anything),
     symptom(ram_modules_were_updated_lately),
