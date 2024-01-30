@@ -12,13 +12,14 @@
 
 :- discontiguous symptom/1.
 
+:- consult('internal.pl').
+:- consult('localization.pl').
 :- consult('translations_en.pl').
 :- consult('translations_es.pl').
 :- consult('translations_de.pl').
 
-%%%%%%% DEFINITION OF SYMPTOMS
 
-%%%%%%% DEFINITION OF BROKEN COMPONENT
+%%%%%%% DEFINITION OF REPAIR ISSUES
 
 brokenComponent(no_electricity_on_the_power_outlet) :-
     is_absent(system_turns_on),
@@ -68,71 +69,3 @@ brokenComponent(disconnected_ram_modules) :-
     symptom(screen_is_not_displaying_anything),
     symptom(ram_modules_were_updated_lately),
     symptom(system_works_after_reinserting_the_ram_modules).
-
-
-%%%%%% INTERNAL PREDICATES OF THE EXPERT SYSTEM. DO NOT TOUCH.
-
-% Informs the engine that these predicates will change during execution. They are inputted by the user.
-:- dynamic symptom_present/1,symptom_absent/1.
-
-symptom(S) :- (symptom_present(S) -> true ; (symptom_absent(S) -> fail ; ask_and_store_answer(S))).
-is_absent(S) :- (symptom_present(S) -> fail ; (symptom_absent(S) -> true ; ask_and_store_answer(S))).
-delete_all_symptoms :- ((retractall(symptom_present(_)), retractall(symptom_absent(_)),fail) ; true).
-
-start :- start("en"). % The default locale is English
-start(Locale) :- store_locale(Locale), delete_all_symptoms, diagnose.
-
-diagnose :-
-    brokenComponent(Disease),
-    print_localized_all([diagnose_is,Disease]),nl.
-
-diagnose :-
-    print_localized_message(unable_to_diagnose_broken_component).
-
-% Print all symptom_present/1 predicates
-print_symptom_present :-
-    print_localized_message(questions_answered_yes),
-    forall(symptom_present(Symptom), print_localized_message(Symptom)),
-    nl.
-print_symptom_absent :-
-    print_localized_message(questions_answered_no),
-    forall(symptom_absent(Symptom), print_localized_message(Symptom)),
-    nl.
-report :-
-    print_symptom_present,
-    print_symptom_absent,
-    print_localized_message(questions_answered_report_end).
-
-%%%%%%% Other predicates %%%%%%%%%
-print_localized_message(Key) :-
-    current_locale(Locale),
-    print_localized_message(Key, Locale).
-
-print_localized_message(Key, Locale) :-
-    MessageTerm =.. [Key, Locale],
-    print_message(information, MessageTerm).
-
-% Store the current locale. If it isn't supported, fallback to English.
-:- dynamic current_locale/1.
-store_locale(Locale) :- (member(Locale, [en,es,de]) ; fail),
-    retractall(current_locale(_)), assert(current_locale(Locale)).
-store_locale(_Locale) :- store_locale(en).
-
-% Prints the elements of the list
-print_localized_all([]).
-print_localized_all([Term| Terms]) :- print_localized_message(Term),
-print_localized_all(Terms).
-
-% Predicate to read a yes/no answer and store the answer in the knowledge base
-ask_and_store_answer(Question) :-
-	print_localized_all([Question, answer_keys_list]),
-	read_line_to_string(user_input, N),
-	current_locale(Locale),
-	answer_yes_possibilities(Locale, ValidAnswers),
-	( member(N, ValidAnswers) -> assert(symptom_present(Question)) ;
-       assert(symptom_absent(Question)), fail).
-
-% To inform prolog, that there are many predicates with different locales, these must be together in the same file
-answer_yes_possibilities(en, [ "yes", "y", "Yes", "Y"]).
-answer_yes_possibilities(de, ["ja", "Ja", "j", "J"]).
-answer_yes_possibilities(es, [ "si", "s", "Si", "Sí", "sí"]).
