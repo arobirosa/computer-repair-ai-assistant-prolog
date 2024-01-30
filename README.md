@@ -70,8 +70,8 @@ ask_and_store_answer(Question) :-
 * Diagnostic using probability because this can be better modelled with **machine learning** and this could make the diagnostic **difficult to explain**
 
 ## TODO Tasks
-* Add copyright and contact information to all files
 
+None.
 
 # Installation
 
