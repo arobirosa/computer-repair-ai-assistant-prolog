@@ -36,6 +36,18 @@ ask_and_store_answer(Question) :-
 	( (N == 'yes' ; N == 'y') -> assert(symptom_present(Question)) ;
        assert(symptom_absent(Question)), fail).
 ~~~
+* The stability of some of the packs (plug-ins) like [prosqlite](http://stoics.org.uk/~nicos/sware/prosqlite) to access SQLite databases is poor. After one day, every time I tried to open a connection, there was a segmentation fault in the C code associated with the pack:
+~~~
+Running on :date(2024,1,31)
+
+SWI-Prolog [thread 1 (main) at Wed Jan 31 09:57:28 2024]: received fatal signal 11 (segv)
+C-stack trace labeled "crash":
+  [0] PL_advance_hash_table_enum() at ??:? [0x7f928dda0a9f]
+  [1] Sdprintf() at ??:? [0x7f928dda351d]
+  [2] PL_scan_options() at ??:? [0x7f928dda4d5e]
+  [3] __sigaction() at ??:? [0x7f928da3c460]
+~~~
+I can open the uniprot database without issues in Intellij IDEA and [DB Browser for SQLite](https://sqlitebrowser.org/)
 * There aren't any prolog programmers in the market. Prolog is more difficult to understand as a language than object-oriented or imperative languages like Java or Python
 * Most prolog distributions don't seem to be actively used in commercial projects
 
