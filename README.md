@@ -26,6 +26,7 @@ TODO Complete this section
 * The [graphical debugger](https://www.swi-prolog.org/pldoc/man?section=start-guitracer) is useful and pretty easy to use, once you have set the breakpoints
 
 ## Negative points
+* **The expert in the field must be assisted by a programmer to enter new knowledge into the system**. It is difficult for a domain expert to add new diagnoses on his/her own.** On db/symptomsAndIssues.sqlite you will find a database with new repair issues and symptoms. Using a programme like [DB Browser for SQLite](https://sqlitebrowser.org/) for adding new knowledge is slow and error-prone, the same as writing Prolog code directly. I was hoping to find an easy way to add knowledge and this would have been an advantage of expert systems which don't use statistical methods
 * How the prolog engine works is difficult to understand. Small changes like using single quotes for strings will create atoms which behave different from string and the following code will never be true:
 
 ~~~
@@ -36,7 +37,8 @@ ask_and_store_answer(Question) :-
 	( (N == 'yes' ; N == 'y') -> assert(symptom_present(Question)) ;
        assert(symptom_absent(Question)), fail).
 ~~~
-* The stability of some of the packs (plug-ins) like [prosqlite](http://stoics.org.uk/~nicos/sware/prosqlite) to access SQLite databases is poor. After one day, every time I tried to open a connection, there was a segmentation fault in the C code associated with the pack:
+
+* The stability of some of the free packs (plug-ins) like [prosqlite](http://stoics.org.uk/~nicos/sware/prosqlite) to access SQLite databases is poor. After one day, every time I tried to open a connection, there was a segmentation fault in the C code associated with the pack:
 ~~~
 Running on :date(2024,1,31)
 
@@ -52,7 +54,6 @@ I can open the uniprot database without issues in Intellij IDEA and [DB Browser 
 * Most prolog distributions don't seem to be actively used in commercial projects
 
 ## Neutral points
-* **It is difficult for a domain expert to add new diagnoses on his/her own.** For a fast repair, the symptoms which are easy to check must be written first on the prolog programme
 * The SWI Prolog implementation is mature for commercial projects
 * The IDEs have poor support for Prolog. Intellij IDEA supports Prolog syntax highlighting using the plug-in Logtalk. The Prolog plugin is not compatible with version 2022.1.3 
 
@@ -60,16 +61,16 @@ I can open the uniprot database without issues in Intellij IDEA and [DB Browser 
 
 ## Must have
 
-✓ Uses the prolog programming language \
-✓ The user can enter that a symptom is absent \
-- [ ] An user without training can use the assistant
-- [ ] An user with simple steps can add new causes and symptoms 
-✓ The messages and inputs can be internationalised in different languages Prolog isn't expected to be used interacting directly with the user, so I implemented this minimally. \
+:white_check_mark: Uses the prolog programming language \
+:white_check_mark: The user can enter that a symptom is absent \
+:white_check_mark: An user without training can use the assistant. He only needs to how to start the expert system in his language. \
+:x: An user with simple steps can add new causes and symptoms :rage:  
+:white_check_mark: The messages and inputs can be internationalised in different languages Prolog isn't expected to be used interacting directly with the user, so I implemented this minimally. \
 - [ ] The assistant works on Windows or can be used with a browser Prolog isn't expected to be used interacting directly with the user
-✓ Automatic tests for the assistant can be written \
+:white_check_mark: Automatic tests for the assistant can be written \
 
 ## Should Have
-✓ It is possible to log errors, warnings, informational and debug messages. On SWI Prolog this is done with print_message/1 as with the i18n \
+:white_check_mark: It is possible to log errors, warnings, informational and debug messages. On SWI Prolog this is done with print_message/1 as with the i18n \
 - [ ] The entered symptoms can be saved. And an user can restored a previously saved session
 - [ ] The assistant can be integrated in a website or delivered as a separated programme
 - [ ] It is possible to add causes which only affect some computer models
