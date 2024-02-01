@@ -38,7 +38,7 @@ ask_and_store_answer(Question) :-
        assert(symptom_absent(Question)), fail).
 ~~~
 
-* The stability of some of the free packs (plug-ins) like [prosqlite](http://stoics.org.uk/~nicos/sware/prosqlite) to access SQLite databases is poor. After one day, every time I tried to open a connection, there was a segmentation fault in the C code associated with the pack:
+* The stability of some free packs (plug-ins) like [prosqlite](http://stoics.org.uk/~nicos/sware/prosqlite) to access SQLite databases is poor. After one day, every time I tried to open a connection, there was a segmentation fault in the C code associated with the pack:
 ~~~
 Running on :date(2024,1,31)
 
@@ -51,10 +51,9 @@ C-stack trace labeled "crash":
 ~~~
 I can open the uniprot database without issues in Intellij IDEA and [DB Browser for SQLite](https://sqlitebrowser.org/)
 * There aren't any prolog programmers in the market. Prolog is more difficult to understand as a language than object-oriented or imperative languages like Java or Python
-* Most prolog distributions don't seem to be actively used in commercial projects
 
 ## Neutral points
-* The SWI Prolog implementation is mature for commercial projects
+* The SWI Prolog implementation is mature for commercial projects. 
 * The IDEs have poor support for Prolog. Intellij IDEA supports Prolog syntax highlighting using the plug-in Logtalk. The Prolog plugin is not compatible with version 2022.1.3 
 
 # Requirements and features of the proof of concept
