@@ -12,7 +12,10 @@
 %   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 %   See the License for the specific language governing permissions and
 %   limitations under the License.
-% 
+%
+:- use_module(library(http/html_write)).
+:- reexport(library(webconsole)).
+
 print_localized_message(Key) :-
     current_locale(Locale),
     print_localized_message(Key, Locale).
@@ -26,6 +29,18 @@ print_localized_message(Key, Locale) :-
 store_locale(Locale) :- (member(Locale, [en,es,de]) ; fail),
     retractall(current_locale(_)), assert(current_locale(Locale)).
 store_locale(_Locale) :- store_locale(en).
+
+html_output_localized_message(Key) :-
+    current_locale(Locale),
+    html_output_localized_message(Key, Locale).
+
+html_output_localized_message(Key, Locale) :-
+   load_html_translations(Key, Locale, Translation),
+   wc_html(p(Translation)).
+
+load_html_translations(Key, Locale, Translation) :-
+     MessageTerm =.. [Key, Locale],
+     message_to_string(MessageTerm, Translation).
 
 % Prints the elements of the list
 print_localized_all([]).

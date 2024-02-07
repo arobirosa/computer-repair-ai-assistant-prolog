@@ -16,6 +16,8 @@
 
 %% INTERNAL PREDICATES OF THE EXPERT SYSTEM. DO NOT TOUCH.
 
+:- use_module(library(webconsole)).
+
 % Informs the engine that these predicates will change during execution. They are inputted by the user.
 :- dynamic symptom_present/1,symptom_absent/1.
 
@@ -23,15 +25,18 @@ symptom(S) :- (symptom_present(S) -> true ; (symptom_absent(S) -> fail ; ask_and
 is_absent(S) :- (symptom_present(S) -> fail ; (symptom_absent(S) -> true ; ask_and_store_answer(S))).
 delete_all_symptoms :- ((retractall(symptom_present(_)), retractall(symptom_absent(_)),fail) ; true).
 
-start :- start("en"). % The default locale is English
-start(Locale) :- store_locale(Locale), delete_all_symptoms, diagnose.
+start :- start(en). % The default locale is English
+start(Locale) :- store_locale(Locale),
+%    wc_start([title("Computer Repair AI Asisstant"),port(8080)]),
+    delete_all_symptoms, diagnose.
 
 diagnose :-
+    html_output_localized_message(diagnose_start),
     brokenComponent(Disease),
     print_localized_all([diagnose_is,Disease]),nl.
 
 diagnose :-
-    print_localized_message(unable_to_diagnose_broken_component).
+    html_output_localized_message(unable_to_diagnose_broken_component).
 
 % Print all symptom_present/1 predicates
 print_symptom_present :-
@@ -51,14 +56,21 @@ report :-
 
 % Predicate to read a yes/no answer and store the answer in the knowledge base
 ask_and_store_answer(Question) :-
-	print_localized_all([Question, answer_keys_list]),
-	read_line_to_string(user_input, N),
 	current_locale(Locale),
-	answer_yes_possibilities(Locale, ValidAnswers),
-	( member(N, ValidAnswers) -> assert(symptom_present(Question)) ;
+	answer_yes_label(Locale, YesLabel),
+	answer_no_label(Locale, NoLabel),
+    load_html_translations(Question, Locale, HtmlQuestion),
+	wc_ask([ answer(Answer) ], [ p(HtmlQuestion),
+	    button([name(answer), type(submit), value("Yes"), accesskey("y")], YesLabel),
+        button([name(answer), type(submit), value("No"), accesskey("n")], NoLabel)
+                                                                    ]),
+	( Answer == "Yes" -> assert(symptom_present(Question)) ;
        assert(symptom_absent(Question)), fail).
 
 % To inform prolog, that there are many predicates with different locales, these must be together in the same file
-answer_yes_possibilities(en, [ "yes", "y", "Yes", "Y"]).
-answer_yes_possibilities(de, ["ja", "Ja", "j", "J"]).
-answer_yes_possibilities(es, [ "si", "s", "Si", "Sí", "sí"]).
+answer_yes_label(en, "Yes").
+answer_yes_label(de, "Ja").
+answer_yes_label(es, "Sí").
+answer_no_label(en, "No").
+answer_no_label(de, "Nein").
+answer_no_label(es, "No").

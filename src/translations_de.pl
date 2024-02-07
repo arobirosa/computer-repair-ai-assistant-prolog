@@ -52,3 +52,4 @@ prolog:message(answer_keys_list(de)) --> [" (ja/j/nein/n) "].
 prolog:message(diagnose_is(de)) --> ["Die Diagnose ist: "].
 prolog:message(unable_to_diagnose_broken_component(de)) --> ["Ich kann nicht herausfinden, welche Komponente kaputt ist. ",
     "Bitte wenden Sie sich an einen Techniker.", nl].
+prolog:message(diagnose_start(de)) --> ["Fangen wir mit der Diagnose an!"].
