@@ -27,7 +27,7 @@
 :- use_module("areko_localization.pl").
 
 % At startup we start the server and show the browser window
-server_start :- store_locale(en), wc_start([title("Computer Repair AI Asisstant"),port(8080)]).
+start_server :- store_locale(en), wc_start([title("Computer Repair AI Asisstant"),port(8080)]).
 
 % Informs the engine that these predicates will change during execution. They are inputted by the user.
 :- dynamic symptom_present/1,symptom_absent/1.
