@@ -32,8 +32,10 @@ start_server :- store_locale(en), wc_start([title("Computer Repair AI Asisstant"
 % Informs the engine that these predicates will change during execution. They are inputted by the user.
 :- dynamic symptom_present/1,symptom_absent/1.
 
-symptom(S) :- (symptom_present(S) -> true ; (symptom_absent(S) -> fail ; ask_and_store_answer(S))).
-is_absent(S) :- (symptom_present(S) -> fail ; (symptom_absent(S) -> true ; ask_and_store_answer(S))).
+symptom(S) :- (symptom_present(S) -> true ; (symptom_absent(S) -> fail ;
+        (ask_and_store_answer(S),symptom_present(S)))).
+is_absent(S) :- (symptom_present(S) -> fail ; (symptom_absent(S) -> true ;
+        (ask_and_store_answer(S),symptom_absent(S)))).
 delete_all_symptoms :- ((retractall(symptom_present(_)), retractall(symptom_absent(_)),fail) ; true).
 
 start :- start(en). % The default locale is English
@@ -74,8 +76,8 @@ ask_and_store_answer(Question) :-
 	    button([name(answer), type(submit), value("Yes"), accesskey("y")], YesLabel),
         button([name(answer), type(submit), value("No"), accesskey("n")], NoLabel)
                                                                     ]),
-	( Answer == "Yes" -> assert(symptom_present(Question)) ;
-       assert(symptom_absent(Question)), fail).
+	( Answer == 'Yes' -> assert(symptom_present(Question)) ;
+       assert(symptom_absent(Question))).
 
 % To inform prolog, that there are many predicates with different locales, these must be together in the same file
 answer_yes_label(en, "Yes").
