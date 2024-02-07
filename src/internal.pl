@@ -18,6 +18,9 @@
 
 :- use_module(library(webconsole)).
 
+% At startup we start the server and show the browser window
+:- wc_start([title("Computer Repair AI Asisstant"),port(8080)]).
+
 % Informs the engine that these predicates will change during execution. They are inputted by the user.
 :- dynamic symptom_present/1,symptom_absent/1.
 
@@ -27,7 +30,6 @@ delete_all_symptoms :- ((retractall(symptom_present(_)), retractall(symptom_abse
 
 start :- start(en). % The default locale is English
 start(Locale) :- store_locale(Locale),
-%    wc_start([title("Computer Repair AI Asisstant"),port(8080)]),
     delete_all_symptoms, diagnose.
 
 diagnose :-
