@@ -28,7 +28,7 @@
 
 :- discontiguous symptom/1.
 
-:- consult('internal.pl').
+:- use_module("areko_internal.pl").
 
 %%%%%%% DEFINITION OF REPAIR ISSUES
 
