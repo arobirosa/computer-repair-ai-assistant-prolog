@@ -20,11 +20,6 @@
 % Predicates
 %   start   Starts a new repair case. It removes all old facts entered by the user.
 %   report  Generates a report with present and absent symptoms
-% TODO The following predicates must be implemented
-%
-%   change  Modifies the answers
-%   save(repairCaseID)  Saves the case into the database
-%   load(repairCaseID)  Loads the case from the database
 
 :- use_module("areko_internal.pl").
 

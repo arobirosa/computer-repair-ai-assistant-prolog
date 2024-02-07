@@ -17,10 +17,8 @@ contracts and other documents.
 
 # Conclusions reached after developing the assistant
 
-TODO Complete this section
-
 ## Positive points
-* **Easy to understand how the assistant reached a conclusion**
+* **It is easy to understand how the assistant reached a conclusion**
 * **The knowledge base is incremental**. The customer can start with a few cases and add new ones as soon as they appear in the real world.
 * The reasoning has high-precision when no probabilities are used
 * The [graphical debugger](https://www.swi-prolog.org/pldoc/man?section=start-guitracer) is useful and pretty easy to use, once you have set the breakpoints
@@ -65,27 +63,21 @@ I can open the uniprot database without issues in Intellij IDEA and [DB Browser 
 :white_check_mark: An user without training can use the assistant. He only needs to how to start the expert system in his language. \
 :x: An user with simple steps can add new causes and symptoms :rage:  
 :white_check_mark: The messages and inputs can be internationalised in different languages Prolog isn't expected to be used interacting directly with the user, so I implemented this minimally. \
-- [ ] The assistant works on Windows or can be used with a browser. Prolog isn't expected to be used interacting directly with the user
+:white_check_mark: The assistant can be used with a browser works on Windows. Prolog isn't expected to be used interacting directly with the user
 :white_check_mark: Automatic tests for the assistant can be written \
 
 ## Should Have
 :white_check_mark: It is possible to log errors, warnings, informational and debug messages. On SWI Prolog this is done with print_message/1 as with the i18n \
-- [ ] The entered symptoms can be saved. And an user can restored a previously saved session
-- [ ] The assistant can be integrated in a website or delivered as a separated programme
-- [ ] It is possible to add causes which only affect some computer models
+- [ ] The entered symptoms can be saved. And an user can restore a previously saved session. **Possible but not implemented**
+:white_check_mark: The assistant can be integrated in a website or delivered as a separated programme
+- [ ] It is possible to add causes which only affect some computer models. **Possible but not implemented**
 
 ## Could have - Nice to have
-- [ ] The assistant can be called from a Java programme
+- [ ] The assistant can be called from a Java programme. **Possible but not implemented**
 
 ## Won't have
 
 * Diagnostic using probability because this can be better modelled with **machine learning** and this could make the diagnostic **difficult to explain**
-
-## TODO Tasks
-
-Add Areko Consulting Ltd. to the documentation and license
-
-Try the pack [instant_prolog_docs](https://www.swi-prolog.org/pack/list?p=instant_prolog_docs) to see if it documents predicates better than AI code assistant which work for any programming language.
 
 # Installation
 
@@ -93,6 +85,12 @@ On a linux box run
 
 ~~~
 sudo apt-get install swi-prolog
+swipl
+~~~
+In the console enter the following command to install the package and exit:
+~~~
+pack_install(webconsole).
+halt.
 ~~~
 
 # Usage
@@ -115,7 +113,7 @@ The diagnostic and symptoms were inspired from the diagrams of this [expert syst
 The following ones were evaluated for use in this project:
 
 * [SWI-Prolog](https://www.swi-prolog.org/) **Choosen**. It can link Prolog predicates to an SQL database, Java and Python. It can work on both Windows and Linux-based systems. It can be used to create Web Applications
-* [Prolog Development Tool - PDT](Prolog Development Tool - PDT) **Choosen** It has a console to execute any predicate while working on a prolog script. This is better than the support provided by Intellij IDEA with the Logtalk plugin.
+* [Prolog Development Tool - PDT](https://sewiki.iai.uni-bonn.de/research/pdt/docs/start) **Choosen** It has a console to execute any predicate while working on a prolog script. This is better than the support provided by Intellij IDEA with the Logtalk plugin.
 
 [Table with all implementations of Prolog](https://en.wikipedia.org/wiki/Comparison_of_Prolog_implementations)
 
@@ -135,37 +133,17 @@ The following ones were evaluated for use in this project:
 * [Medical Expert System for COVID-19 from Rojay White and others](https://github.com/R-White-0/Medical-Expert-System) It uses 3 or more symptoms 
   to diagnostic COVID-19. It shows how to use windows, messages boxes and checkboxes to ask for user imput with Prolog. Notice: Works locally but not on the online version of SWI Prolog.
 
-
-
---------
-
-TODO The next sections must be organized
-
-
-https://www.swi-prolog.org/pldoc/man?predicate=style_check/1
-https://www.gyaanibuddy.com/assignments/assignment-detail/medical-diagnosis-in-prolog/
-https://swish.swi-prolog.org/example/movies.pl
-https://www.swi-prolog.org/download/stable
-https://www.swi-prolog.org/pldoc/man?section=implhistory
-
-# Prolog code fixers
-
-TODO Check if they work
-
-https://codepal.ai/code-fixer/prolog
-https://codingfleet.com/code-assistant/prolog/
-
 # Other projects
-[Medical diagnosis in prolog](https://www.gyaanibuddy.com/assignments/assignment-detail/medical-diagnosis-in-prolog/)
-[Expert program computer project of Robotics and Energy](https://roboticsandenergy.com/projects/expert-program-computer-project/)
-[SHEPHERD: Deep learning for diagnosing patients with rare genetic diseases](https://github.com/mims-harvard/SHEPHERD)
-[Proof-of-concept (POC) of a medical diagnosis system using a probabilistic expert system, which is based on Noisy-or Bayesian Network Model.](https://github.com/hidiryuzuguzel/medical-expert-system-poc/tree/master)
+* [Medical diagnosis in prolog](https://www.gyaanibuddy.com/assignments/assignment-detail/medical-diagnosis-in-prolog/) Exercise to practice
+* [SWISH Movies exercise to practice doing queries](https://swish.swi-prolog.org/example/movies.pl)
+* [Expert program computer project of Robotics and Energy](https://roboticsandenergy.com/projects/expert-program-computer-project/)
+* [SHEPHERD: Deep learning for diagnosing patients with rare genetic diseases](https://github.com/mims-harvard/SHEPHERD)
+* [Proof-of-concept (POC) of a medical diagnosis system using a probabilistic expert system, which is based on Noisy-or Bayesian Network Model.](https://github.com/hidiryuzuguzel/medical-expert-system-poc/tree/master)
 
-# Papers
+# Academic Papers
 
-https://arxiv.org/pdf/2110.04439.pdf
-https://www.semanticscholar.org/paper/PROLOG-EXPERT-SYSTEM%3A-THE-DIAGNOSIS-OF-KIDNEY-Roventa-Ro%C8%99u/349a7cc2ccbe9ab0ab562467eaaf259d46ab7e3e
-file:///home/arobirosa/Downloads/450-Article%20Text-1399-1-10-20150224.pdf
-https://dl.acm.org/doi/abs/10.1145/3487664.3487728
-https://www.jstage.jst.go.jp/article/pjsai/JSAI2021/0/JSAI2021_4N3IS1b01/_pdf
-https://scholarworks.calstate.edu/downloads/hd76s295t
+* [A Generic Knowledge Based Medical Diagnosis Expert System](https://arxiv.org/pdf/2110.04439.pdf)
+* [Prolog Expert System: the diagnosis of kidney diseases](https://www.semanticscholar.org/paper/PROLOG-EXPERT-SYSTEM%3A-THE-DIAGNOSIS-OF-KIDNEY-Roventa-Ro%C8%99u/349a7cc2ccbe9ab0ab562467eaaf259d46ab7e3e)
+* [Design and implementation of a SWI-Prolog-based expert system to
+diagnose anxiety disorder](https://www.jstage.jst.go.jp/article/pjsai/JSAI2021/0/JSAI2021_4N3IS1b01/_pdf)
+* [Prolog and Inductive Reasoning: A Logic Programming Language](https://scholarworks.calstate.edu/downloads/hd76s295t)
