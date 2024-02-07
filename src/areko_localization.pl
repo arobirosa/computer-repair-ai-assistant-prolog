@@ -19,7 +19,8 @@
 	    store_locale/1,
 	    html_output_localized_message/1,
 	    load_translation_text/3,
-	    html_output_localized_messages/1
+	    html_output_localized_messages/1,
+	    current_locale/1
 	  ]).
 :- use_module(library(http/html_write)).
 :- reexport(library(webconsole)).
