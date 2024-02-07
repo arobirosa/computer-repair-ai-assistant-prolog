@@ -17,9 +17,10 @@
 %% INTERNAL PREDICATES OF THE EXPERT SYSTEM. DO NOT TOUCH.
 
 :- use_module(library(webconsole)).
+:- use_module("areko_localization.pl").
 
 % At startup we start the server and show the browser window
-:- store_locale(en), wc_start([title("Computer Repair AI Asisstant"),port(8080)]).
+%%:- store_locale(en), wc_start([title("Computer Repair AI Asisstant"),port(8080)]).
 
 % Informs the engine that these predicates will change during execution. They are inputted by the user.
 :- dynamic symptom_present/1,symptom_absent/1.

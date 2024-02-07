@@ -20,9 +20,9 @@
 %
 %    swipl -g run_tests -t halt test/src/i18n_localized_messages.plt
 %
+:- use_module('../../src/areko_localization.pl').
 
 :- begin_tests(i18n).
-:- consult('../../src/computer_repair_assistant.pl').
 
 :- multifile user:message_hook/3.
 :- dynamic captured_string/1.

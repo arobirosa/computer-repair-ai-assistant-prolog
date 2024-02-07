@@ -20,20 +20,20 @@
 %
 %    swipl -g run_tests -t halt test/src/i18n_locale_management.plt
 %
+:- use_module('../../src/areko_localization.pl').
 
 :- begin_tests(i18n).
-:- consult('../../src/computer_repair_assistant.pl').
 
 test(defaultLocaleIsEnglish) :-
     store_locale(en),
-    current_locale(en), !.
+    current_locale(en).
 
 test(fallbackToEnglishIfTheLocaleIsUnknown) :-
-    store_locale(en),
-    current_locale(en), !.
+    store_locale(dk),
+    current_locale(en).
 
 test(setsSpanishLocale) :-
     store_locale(es),
-    current_locale(es), !.
+    current_locale(es).
 
 :- end_tests(i18n).

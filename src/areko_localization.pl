@@ -13,8 +13,19 @@
 %   See the License for the specific language governing permissions and
 %   limitations under the License.
 %
+:- module(areko_localization,
+	  [ print_localized_message/1,
+	    print_localized_message/2,
+	    store_locale/1,
+	    html_output_localized_message/1,
+	    load_translation_text/3,
+	    html_output_localized_messages/1
+	  ]).
 :- use_module(library(http/html_write)).
 :- reexport(library(webconsole)).
+:- consult('translations_en.pl').
+:- consult('translations_es.pl').
+:- consult('translations_de.pl').
 
 print_localized_message(Key) :-
     current_locale(Locale),
@@ -50,7 +61,7 @@ load_translation_texts(_Locale, [], []) :- !.
 html_output_localized_messages([]).
 html_output_localized_messages(Keys) :-
     current_locale(Locale),
-    load_translation_texts(Locale, Terms, TranslatedTerms),
+    load_translation_texts(Locale, Keys, TranslatedTerms),
     atomic_list_concat(TranslatedTerms, "", MergedTranslation),
     wc_html(p(MergedTranslation)).
 
