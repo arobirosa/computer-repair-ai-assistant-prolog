@@ -65,6 +65,9 @@ report :-
     print_localized_message(questions_answered_report_end).
 
 %%%%%%% Other predicates %%%%%%%%%
+html_output_answer(Question, YesLabel) :-
+    atomic_list_concat([Question, YesLabel], " ", QuestionWithAnswer),
+    wc_html(p(QuestionWithAnswer)).
 
 % Predicate to read a yes/no answer and store the answer in the knowledge base
 ask_and_store_answer(Question) :-
@@ -76,8 +79,8 @@ ask_and_store_answer(Question) :-
 	    button([name(answer), type(submit), value("Yes"), accesskey("y")], YesLabel),
         button([name(answer), type(submit), value("No"), accesskey("n")], NoLabel)
                                                                     ]),
-	( Answer == 'Yes' -> assert(symptom_present(Question)) ;
-       assert(symptom_absent(Question))).
+	( Answer == 'Yes' -> html_output_answer(HtmlQuestion, YesLabel), assert(symptom_present(Question)) ;
+       html_output_answer(HtmlQuestion, NoLabel), assert(symptom_absent(Question))).
 
 % To inform prolog, that there are many predicates with different locales, these must be together in the same file
 answer_yes_label(en, "Yes").
