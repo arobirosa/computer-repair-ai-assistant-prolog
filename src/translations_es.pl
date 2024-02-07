@@ -52,3 +52,4 @@ prolog:message(questions_answered_report_end(es)) --> ["=== Fin del informe ==="
 prolog:message(answer_keys_list(es)) --> [" (si/s/no/n) "].
 prolog:message(diagnose_is(es)) --> ["La causa del problema es: "].
 prolog:message(unable_to_diagnose_broken_component(es)) --> ["No puedo diagnosticar el problema. ", "Póngase en contacto con un técnico.", nl].
+prolog:message(diagnose_start(es)) --> ["Empecemos a diagnosticar!"].

@@ -83,6 +83,8 @@ I can open the uniprot database without issues in Intellij IDEA and [DB Browser 
 
 ## TODO Tasks
 
+Add Areko Consulting Ltd. to the documentation and license
+
 Try the pack [instant_prolog_docs](https://www.swi-prolog.org/pack/list?p=instant_prolog_docs) to see if it documents predicates better than AI code assistant which work for any programming language.
 
 # Installation
