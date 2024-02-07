@@ -65,7 +65,7 @@ I can open the uniprot database without issues in Intellij IDEA and [DB Browser 
 :white_check_mark: An user without training can use the assistant. He only needs to how to start the expert system in his language. \
 :x: An user with simple steps can add new causes and symptoms :rage:  
 :white_check_mark: The messages and inputs can be internationalised in different languages Prolog isn't expected to be used interacting directly with the user, so I implemented this minimally. \
-- [ ] The assistant works on Windows or can be used with a browser Prolog isn't expected to be used interacting directly with the user
+- [ ] The assistant works on Windows or can be used with a browser. Prolog isn't expected to be used interacting directly with the user
 :white_check_mark: Automatic tests for the assistant can be written \
 
 ## Should Have
