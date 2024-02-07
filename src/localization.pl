@@ -35,14 +35,23 @@ html_output_localized_message(Key) :-
     html_output_localized_message(Key, Locale).
 
 html_output_localized_message(Key, Locale) :-
-   load_html_translations(Key, Locale, Translation),
+   load_translation_text(Locale, Key, Translation),
    wc_html(p(Translation)).
 
-load_html_translations(Key, Locale, Translation) :-
+load_translation_text(Locale, Key, Translation) :-
      MessageTerm =.. [Key, Locale],
      message_to_string(MessageTerm, Translation).
 
-% Prints the elements of the list
-print_localized_all([]).
-print_localized_all([Term| Terms]) :- print_localized_message(Term),
-print_localized_all(Terms).
+load_translation_texts(Locale, [FirstTerm | Terms], [FirstTranslation | TranslatedTerms]) :-
+    load_translation_text(Locale, FirstTerm, FirstTranslation),
+    load_translation_texts(Locale, Terms, TranslatedTerms).
+load_translation_texts(_Locale, [], []) :- !.
+
+html_output_localized_messages([]).
+html_output_localized_messages(Keys) :-
+    current_locale(Locale),
+    load_translation_texts(Locale, Terms, TranslatedTerms),
+    atomic_list_concat(TranslatedTerms, "", MergedTranslation),
+    wc_html(p(MergedTranslation)).
+
+

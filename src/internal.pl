@@ -19,7 +19,7 @@
 :- use_module(library(webconsole)).
 
 % At startup we start the server and show the browser window
-:- wc_start([title("Computer Repair AI Asisstant"),port(8080)]).
+:- store_locale(en), wc_start([title("Computer Repair AI Asisstant"),port(8080)]).
 
 % Informs the engine that these predicates will change during execution. They are inputted by the user.
 :- dynamic symptom_present/1,symptom_absent/1.
@@ -35,7 +35,7 @@ start(Locale) :- store_locale(Locale),
 diagnose :-
     html_output_localized_message(diagnose_start),
     brokenComponent(Disease),
-    print_localized_all([diagnose_is,Disease]),nl.
+    html_output_localized_messages([diagnose_is,Disease]),nl.
 
 diagnose :-
     html_output_localized_message(unable_to_diagnose_broken_component).
@@ -61,7 +61,7 @@ ask_and_store_answer(Question) :-
 	current_locale(Locale),
 	answer_yes_label(Locale, YesLabel),
 	answer_no_label(Locale, NoLabel),
-    load_html_translations(Question, Locale, HtmlQuestion),
+    load_translation_text(Locale, Question, HtmlQuestion),
 	wc_ask([ answer(Answer) ], [ p(HtmlQuestion),
 	    button([name(answer), type(submit), value("Yes"), accesskey("y")], YesLabel),
         button([name(answer), type(submit), value("No"), accesskey("n")], NoLabel)
