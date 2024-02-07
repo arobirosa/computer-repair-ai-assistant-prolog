@@ -46,4 +46,12 @@ test(translationsInEnglishFallbackToTheCode) :-
     (captured_string("[Unknown message: ~p-[unknown_translation_code(en)]]") -> true;
         (forall(captured_string(Symptom), (write("Test failed. Captured: '"), write(Symptom), writeln("'")))), fail).
 
+test(loadExistingTranslationText) :-
+    load_translation_text(en, disconnected_ram_modules, Translation),
+    Translation == "The RAM module was disconnected from the motherboard".
+
+test(loadMissingTranslationText) :-
+    load_translation_text(dk, disconnected_ram_modules, Translation),
+    Translation == "Unknown message: disconnected_ram_modules(dk)".
+
 :- end_tests(i18n).
