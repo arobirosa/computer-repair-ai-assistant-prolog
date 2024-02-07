@@ -26,8 +26,6 @@
 %   save(repairCaseID)  Saves the case into the database
 %   load(repairCaseID)  Loads the case from the database
 
-:- discontiguous symptom/1.
-
 :- use_module("areko_internal.pl").
 
 %%%%%%% DEFINITION OF REPAIR ISSUES
