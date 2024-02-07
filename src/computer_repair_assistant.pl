@@ -28,8 +28,11 @@
 
 :- discontiguous symptom/1.
 
-:- use_module('localization.pl').
 :- consult('internal.pl').
+:- consult('localization.pl').
+:- consult('translations_en.pl').
+:- consult('translations_es.pl').
+:- consult('translations_de.pl').
 
 
 %%%%%%% DEFINITION OF REPAIR ISSUES

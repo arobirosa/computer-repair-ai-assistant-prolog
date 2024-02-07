@@ -12,22 +12,7 @@
 %   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 %   See the License for the specific language governing permissions and
 %   limitations under the License.
-%
-:- module(localization,
-	  [ print_localized_message//1,
-	    print_localized_message//2,
-	    store_locale//1,
-	    html_output_localized_message//1,
-	    html_output_localized_message//2,
-	    load_html_translations//3,
-	    to_html_paragraphs//2,
-        print_localized_all//1
-	  ]).
-
-:- use_module('translations_de.pl').
-:- use_module('translations_en.pl').
-:- use_module('translations_es.pl').
-
+% 
 print_localized_message(Key) :-
     current_locale(Locale),
     print_localized_message(Key, Locale).
@@ -41,24 +26,6 @@ print_localized_message(Key, Locale) :-
 store_locale(Locale) :- (member(Locale, [en,es,de]) ; fail),
     retractall(current_locale(_)), assert(current_locale(Locale)).
 store_locale(_Locale) :- store_locale(en).
-
-html_output_localized_message(Key) :-
-    current_locale(Locale),
-    html_output_localized_message(Key, Locale).
-
-html_output_localized_message(Key, Locale) :-
-   load_html_translations(Key, Locale, HtmlParagraphs),
-   wc_html(HtmlParagraphs).
-
-load_html_translations(Key, Locale, HtmlParagraphs) :-
-     MessageTerm =.. [Key, Locale],
-     message_translation(MessageTerm, TranslationList),
-     to_html_paragraphs(TranslationList, HtmlParagraphs).
-
-to_html_paragraphs([], []):- !.
-to_html_paragraphs([String|OtherStrings], [Parragraph|OtherParragraphs]):-
-    Parragraph = p(String),
-    to_html_paragraphs(OtherStrings, OtherParragraphs).
 
 % Prints the elements of the list
 print_localized_all([]).
