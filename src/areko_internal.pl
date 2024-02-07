@@ -16,7 +16,7 @@
 
 %% INTERNAL PREDICATES OF THE EXPERT SYSTEM. DO NOT TOUCH.
 :- module(areko_internal,
-	  [ server_start/0,
+	  [ start_server/0,
 	    symptom/1,
 	    is_absent/1,
 	    start/0,
