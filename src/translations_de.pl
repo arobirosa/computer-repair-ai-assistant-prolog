@@ -1,5 +1,5 @@
 %!
-%   Copyright 2024 Antonio Robirosa <ai.prolog@murak.eu>
+%   Copyright 2024 Antonio Robirosa <expert.system@go.areko.consulting>
 %
 %   Licensed under the Apache License, Version 2.0 (the "License");
 %   you may not use this file except in compliance with the License.
