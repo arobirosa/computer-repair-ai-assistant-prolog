@@ -23,6 +23,9 @@
 	    start/1,
 	    report/0
 	  ]).
+
+% Load packs of this project
+:- attach_packs(packs, [replace(true)]).
 :- use_module(library(webconsole)).
 :- use_module("areko_localization.pl").
 
