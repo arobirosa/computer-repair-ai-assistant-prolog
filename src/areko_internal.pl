@@ -20,7 +20,6 @@
 	    symptom/1,
 	    is_absent/1,
 	    start/0,
-	    start/1,
 	    report/0
 	  ]).
 
@@ -30,7 +29,7 @@
 :- use_module("areko_localization.pl").
 
 % At startup we start the server and show the browser window
-start_server :- store_locale(en), wc_start([title("Computer Repair AI Asisstant"),port(8080)]).
+start_server :- wc_start([title("Computer Repair AI Asisstant"),port(8080)]).
 
 % Informs the engine that these predicates will change during execution. They are inputted by the user.
 :- dynamic symptom_present/1,symptom_absent/1.
@@ -41,9 +40,7 @@ is_absent(S) :- (symptom_present(S) -> fail ; (symptom_absent(S) -> true ;
         (ask_and_store_answer(S),symptom_absent(S)))).
 delete_all_symptoms :- ((retractall(symptom_present(_)), retractall(symptom_absent(_)),fail) ; true).
 
-start :- start(en). % The default locale is English
-start(Locale) :- store_locale(Locale),
-    delete_all_symptoms, diagnose.
+start :- delete_all_symptoms, diagnose.
 
 diagnose :-
     html_output_localized_message(diagnose_start),

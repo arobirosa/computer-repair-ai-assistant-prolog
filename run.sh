@@ -33,6 +33,8 @@ main(Argv) :-
     % Parse the command-line arguments
     argv_options(Argv, _PositionalArgs, ReceivedArguments),
     option(language(Language), ReceivedArguments, en),
-    format('Locale set to: ~w~n', [Language]),
+    print_message(debug, setting_locale(Language)),
+    start_server,
+    start,
     halt.
 
