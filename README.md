@@ -112,40 +112,14 @@ The diagnostic and symptoms were inspired from the diagrams of this [expert syst
 
 # Evaluation of Prolog implementations and development environments
 
-The following ones were evaluated for use in this project:
-
-* [SWI-Prolog](https://www.swi-prolog.org/) **Choosen**. It can link Prolog predicates to an SQL database, Java and Python. It can work on both Windows and Linux-based systems. It can be used to create Web Applications
-* [Prolog Development Tool - PDT](https://sewiki.iai.uni-bonn.de/research/pdt/docs/start) **Choosen** It has a console to execute any predicate while working on a prolog script. This is better than the support provided by Intellij IDEA with the Logtalk plugin.
-
-[Table with all implementations of Prolog](https://en.wikipedia.org/wiki/Comparison_of_Prolog_implementations)
-
-### Discarded
-
-* [ErgoAI](https://github.com/ErgoAI) Documentation is poor. Discarded. It can link Prolog predicates to an SQL database, Java and Python
-* [Visual Prolog](https://www.visual-prolog.com/) Discarded. It only works on Windows and its syntax is propietary.
-* [XSB: a deductive database](https://xsb.sourceforge.net/) It is used by ErgoAI internally.
-* [GNU Prolog](https://www.gprolog.org/) It can't use databases to get predicates
-* [ECLiPSe is an open-source software system for the cost-effective development and deployment of constraint programming applications, e.g. in the areas of planning, scheduling, resource allocation, timetabling, transport etc.](http://www.eclipseclp.org/) Better for constraint based problems
-* [Jprolog](https://github.com/jiprolog/jiprolog/releases) The website is outdated and the last change was on 2015.
+Please read the [results of the Evaluation of Prolog implementations and development environments here](docs/prologImplementationsEvaluation.md)
 
 # Other projects using prolog to create (medical) expert systems:
 
-* [Medical Diagnosis system using Prolog created by Shiddika Jahan Bushra](https://github.com/sjbushra/Medical-Diagnosis-system-using-Prolog/) This is a clean way to create an expert system. Please be aware that the license of the code is unclear so it is better not to reuse that code.
-* [NephroDoctor created by Nicola Dileo and Tommaso Viterbo](https://github.com/nicoladileo/NephroDoctor) Shows how to make diagnostic using  probability, modify the answers and save the symptoms to a file
-* [Medical Expert System for COVID-19 from Rojay White and others](https://github.com/R-White-0/Medical-Expert-System) It uses 3 or more symptoms 
-  to diagnostic COVID-19. It shows how to use windows, messages boxes and checkboxes to ask for user imput with Prolog. Notice: Works locally but not on the online version of SWI Prolog.
+You will find [other projects and academic papers here](docs/projectsUsingPrologToCreateExpertSystems.md)
 
-# Other projects
-* [Medical diagnosis in prolog](https://www.gyaanibuddy.com/assignments/assignment-detail/medical-diagnosis-in-prolog/) Exercise to practice
-* [SWISH Movies exercise to practice doing queries](https://swish.swi-prolog.org/example/movies.pl)
-* [Expert program computer project of Robotics and Energy](https://roboticsandenergy.com/projects/expert-program-computer-project/)
-* [SHEPHERD: Deep learning for diagnosing patients with rare genetic diseases](https://github.com/mims-harvard/SHEPHERD)
-* [Proof-of-concept (POC) of a medical diagnosis system using a probabilistic expert system, which is based on Noisy-or Bayesian Network Model.](https://github.com/hidiryuzuguzel/medical-expert-system-poc/tree/master)
+# Contact me for inquiries about expert systems and other AI technologies
 
-# Academic Papers
+If you have a problem or process which might be solved or improved using Expert System or other AI technology, I could help you find out what tools and technologies will be useful for it.
 
-* [A Generic Knowledge Based Medical Diagnosis Expert System](https://arxiv.org/pdf/2110.04439.pdf)
-* [Prolog Expert System: the diagnosis of kidney diseases](https://www.semanticscholar.org/paper/PROLOG-EXPERT-SYSTEM%3A-THE-DIAGNOSIS-OF-KIDNEY-Roventa-Ro%C8%99u/349a7cc2ccbe9ab0ab562467eaaf259d46ab7e3e)
-* [Design and implementation of a SWI-Prolog-based expert system to
-diagnose anxiety disorder](https://www.jstage.jst.go.jp/article/pjsai/JSAI2021/0/JSAI2021_4N3IS1b01/_pdf)
-* [Prolog and Inductive Reasoning: A Logic Programming Language](https://scholarworks.calstate.edu/downloads/hd76s295t)
+Just send me a message to my GitHub email address. 
