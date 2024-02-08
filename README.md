@@ -87,12 +87,13 @@ On a linux box run
 
 ~~~
 sudo apt-get install swi-prolog
-swipl
+swipl --version
 ~~~
-In the console enter the following command to install the package and exit:
+You should see something similar to **SWI-Prolog version 9.0.4 for x86_64-linux**.
+
+Go into the git repository and install all the dependencies:
 ~~~
-pack_install(webconsole).
-halt.
+swipl src/packs.pl
 ~~~
 
 # Usage
