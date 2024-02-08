@@ -4,6 +4,6 @@
 * The new tests are meaningful
 * Code is commited in the Github repository and no files or changes are missing
 * The change was tested
-* The feature is documented on the wiki
+* The feature is documented on the README or doc files.
 * The ticket is closed
 
