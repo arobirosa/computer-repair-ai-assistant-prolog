@@ -63,17 +63,19 @@ I can open the uniprot database without issues in Intellij IDEA and [DB Browser 
 :white_check_mark: An user without training can use the assistant. He only needs to how to start the expert system in his language. \
 :x: An user with simple steps can add new causes and symptoms :rage:  
 :white_check_mark: The messages and inputs can be internationalised in different languages Prolog isn't expected to be used interacting directly with the user, so I implemented this minimally. \
-:white_check_mark: The assistant can be used with a browser works on Windows. Prolog isn't expected to be used interacting directly with the user \
+:white_check_mark: The assistant can be used with a browser or works on Windows. Prolog isn't expected to be used interacting directly with the user. Please see [Integration posibilities](docs/integrationPosibilities.md) \
 :white_check_mark: Automatic tests for the assistant can be written \
 
 ## Should Have
 :white_check_mark: It is possible to log errors, warnings, informational and debug messages. On SWI Prolog this is done with print_message/1 as with the i18n \
 - [ ] The entered symptoms can be saved. And an user can restore a previously saved session. **Possible but not implemented** \
-:white_check_mark: The assistant can be integrated in a website or delivered as a separated programme
+
+:white_check_mark: The assistant can be integrated in a website or delivered as a separated programme. Please see [Integration posibilities](docs/integrationPosibilities.md)
+
 - [ ] It is possible to add causes which only affect some computer models. **Possible but not implemented**
 
 ## Could have - Nice to have
-- [ ] The assistant can be called from a Java programme. **Possible but not implemented**
+- [ ] The assistant can be called from a Java programme. **Possible but not implemented** Please see [Integration posibilities].(docs/integrationPosibilities.md)
 
 ## Won't have
 
@@ -102,7 +104,7 @@ swipl src/computer-repair-assistant.pl
 # How to contribute
 
 * As an user, you can create issues with errors or ideas for improvemets
-* As a developer, you can extend the knowledge base, correct errors or make improvements. I recommend you to use Intellij IDEA as IDE, open a terminal window, run **swipl src/computer-repair-assistant.pl** and make tests in the interactive mode. You can reload the source code by entering **make.**.
+* As a developer, you can extend the knowledge base, correct errors or make improvements. I recommend you to use Intellij IDEA as IDE, open a terminal window, run **swipl src/computer-repair-assistant.pl** and make tests in the interactive mode. You can reload the source code by entering **make.**. Please take a look at the [definition of done for each pull request](docs/Definition-of-Done.md)
 
 # Acknowledgment
 
