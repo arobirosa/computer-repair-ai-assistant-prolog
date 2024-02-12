@@ -30,12 +30,13 @@
 
 http:location(resourcesDirectory, '/http/web', [prioriy(10)]).
 
-:- html_resource(css('webconsole.css'),
+:- html_resource(css('naturedesign.css'),
 		 [ requires('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js'),
 		    requires('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css')
 		 ]).
 :- html_resource(naturedesignresources,
 		 [ virtual(true),
+		   requires(css('naturedesign.css')),
 		   requires(css('webconsole.css'))
 		 ]).
 
