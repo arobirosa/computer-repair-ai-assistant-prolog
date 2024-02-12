@@ -27,6 +27,7 @@
 :- attach_packs(packs, [replace(true)]).
 :- use_module(library(webconsole)).
 :- use_module("areko_localization.pl").
+:- use_module("areko_html_pages.pl").
 
 % At startup we start the server and show the browser window
 start_server :- wc_start([title("Computer Repair AI Assistant"),port(8080)]).
@@ -49,6 +50,8 @@ diagnose :-
 
 diagnose :-
     html_output_localized_message(unable_to_diagnose_broken_component).
+
+
 
 % Print all symptom_present/1 predicates
 print_symptom_present :-
