@@ -21,21 +21,22 @@
 :- use_module(library(http/http_dispatch)).
 :- use_module(library(http/html_write)).
 :- use_module(library(http/html_head)).
+:- use_module(library(http/http_path)).
 :- use_module(library(webconsole)).
 
 % Location of the CSS files
 :- multifile http:location/3.
 :- dynamic   http:location/3.
 
-http:location(webconsole, root(http), [prioriy(100)]).
+http:location(resourcesDirectory, '/http/web', [prioriy(10)]).
 
-:- html_resource(css('naturedesign.css'),
+:- html_resource(css('webconsole.css'),
 		 [ requires('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js'),
 		    requires('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css')
 		 ]).
 :- html_resource(naturedesignresources,
 		 [ virtual(true),
-		   requires(css('naturedesign.css'))
+		   requires(css('webconsole.css'))
 		 ]).
 
 % Overwrite the home page
