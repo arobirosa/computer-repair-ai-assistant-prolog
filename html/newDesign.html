@@ -3,13 +3,7 @@
 <head>
     <title>Computer Repair AI Asisstant</title>
 
-    <link rel="stylesheet" type="text/css" href="home_files/webconsole.css">
-    <script type="text/javascript" src="home_files/jquery-1.7.1.js">
-
-    </script>
-    <script type="text/javascript" src="home_files/jquery.form.js">
-
-    </script>
+    <link rel="stylesheet" type="text/css" href="css/webconsole.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js" integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha512-X/YkDZyjTf4wyc2Vy16YGCPHwAY8rZJY+POgokZjQB2mhIRFJCckEGc6YyX9eNsPfn0PzThEuNs+uaomE5CO6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -18,9 +12,7 @@
     </script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <style>
-        body {
-            background-color: #F0E9B2;
-        }
+
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -31,6 +23,10 @@
 
 body div#mainContainer.container div#content.prepend-top.span-17.colborder {
     background-color: #e8f5e9;
+}
+
+body {
+    background-color: antiquewhite;
 }
 
 .container p {
@@ -44,13 +40,41 @@ body div#mainContainer.container div#content.prepend-top.span-17.colborder {
 
 body h1 {
     font-weight: bold;
-    color: #F0E262;
+    color: greenyellow;
+}
+
+.container #wc_output
+{
+    border: none;
+}
+
+.container .form-group {
+    background-color: #AEF062;
+}
+
+.container .form-group p {
+    color: white;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.container .form-group .btn-group {
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.container table tr td {
+    color: #AEF062;
+}
+
+.container table tr th {
+    color: #F0BE62;
 }
 
 </style>
 <body>
 <h1 class="text-center mb-4">Computer Repair AI Assistant</h1>
-<tr class="container">
+<div class="container">
     <div id="wc_error"></div>
     <div id="wc_output">
         <p>
@@ -88,7 +112,7 @@ body h1 {
                 <th scope="col">Code</th>
                 </trtable>
                 </thead>
-                <tbody class="table-group-divider">
+                <tbody class="">
                 <tr>
                     <td>
                         Does the system turn on?
