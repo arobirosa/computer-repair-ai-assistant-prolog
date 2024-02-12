@@ -46,11 +46,13 @@ http:location(resourcesDirectory, '/http/web', [prioriy(10)]).
 wc_home_nature_design(_Request) :-
 	% Don't use check the IP with wc_allowed(Request)
 	% The title will be always the same
-	reply_html_page(title('Computer Repair AI Assistant'),
+	reply_html_page([title('Computer Repair AI Assistant'),meta([name("viewport"),content("width=device-width, initial-scale=1")])],
 			[ \html_requires(naturedesignresources),
-            			  h1('Computer Repair AI Assistant'),
-            			  \wc_error_area,
-            			  \wc_output_area([]),
-            			  \wc_form_area([])
+            			  h1([class('text-center mb-4')], 'Computer Repair AI Assistant'),
+            			  div([class('container')],[
+            			    \wc_error_area,
+                            \wc_output_area([]),
+                            div([class('form-group')], \wc_form_area([]))
+            			  ])
             			]).
 

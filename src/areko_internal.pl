@@ -80,9 +80,10 @@ ask_and_store_answer(Question) :-
 	answer_no_label(Locale, NoLabel),
     load_translation_text(Locale, Question, HtmlQuestion),
 	wc_ask([ answer(Answer) ], [ p(HtmlQuestion),
-	    button([name(answer), type(submit), value("Yes"), accesskey("y")], YesLabel),
-        button([name(answer), type(submit), value("No"), accesskey("n")], NoLabel)
-                                                                    ]),
+	    div([class("btn-group"),role("group"),aria-label("Answer for diagnose")],
+        	        [button([name(answer), type(submit), class("btn btn-success"), value("Yes"), accesskey("y")], YesLabel),
+                     button([name(answer), type(submit), class("btn btn-danger"), value("No"), accesskey("n")], NoLabel)]
+        	    )]),
 	( Answer == 'Yes' -> html_output_answer(HtmlQuestion, YesLabel), assert(symptom_present(Question)) ;
        html_output_answer(HtmlQuestion, NoLabel), assert(symptom_absent(Question))).
 
@@ -92,9 +93,10 @@ ask_what_to_do :-
 	answer_report_label(Locale, ReportLabel),
     load_translation_text(Locale, what_to_do_next, HtmlQuestion),
 	wc_ask([ answer(Answer) ], [ p(HtmlQuestion),
-	    button([name(answer), type(submit), value("Diagnose"), accesskey("d")], DiagnoseLabel),
-        button([name(answer), type(submit), value("Report"), accesskey("r")], ReportLabel)
-                                                                    ]),
+	    div([class("btn-group"),role("group"),aria-label("Next action")],
+	        [button([name(answer), type(submit), class("btn btn-info"), value("Diagnose"), accesskey("d")], DiagnoseLabel),
+             button([name(answer), type(submit), class("btn btn-success"), value("Report"), accesskey("r")], ReportLabel)]
+	    )]),
 	( Answer == 'Diagnose' -> start; report).
 
 % To inform prolog, that there are many predicates with different locales, these must be together in the same file
