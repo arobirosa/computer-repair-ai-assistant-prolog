@@ -80,7 +80,7 @@ ask_and_store_answer(Question) :-
 	answer_no_label(Locale, NoLabel),
     load_translation_text(Locale, Question, HtmlQuestion),
 	wc_ask([ answer(Answer) ], [ p(HtmlQuestion),
-	    div([class("btn-group"),role("group"),aria-label("Answer for diagnose")],
+	    div([class("btn-group"),role("group")],
         	        [button([name(answer), type(submit), class("btn btn-success"), value("Yes"), accesskey("y")], YesLabel),
                      button([name(answer), type(submit), class("btn btn-danger"), value("No"), accesskey("n")], NoLabel)]
         	    )]),
@@ -93,7 +93,7 @@ ask_what_to_do :-
 	answer_report_label(Locale, ReportLabel),
     load_translation_text(Locale, what_to_do_next, HtmlQuestion),
 	wc_ask([ answer(Answer) ], [ p(HtmlQuestion),
-	    div([class("btn-group"),role("group"),aria-label("Next action")],
+	    div([class("btn-group"),role("group")],
 	        [button([name(answer), type(submit), class("btn btn-info"), value("Diagnose"), accesskey("d")], DiagnoseLabel),
              button([name(answer), type(submit), class("btn btn-success"), value("Report"), accesskey("r")], ReportLabel)]
 	    )]),
