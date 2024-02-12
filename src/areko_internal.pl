@@ -40,7 +40,7 @@ is_absent(S) :- (symptom_present(S) -> fail ; (symptom_absent(S) -> true ;
         (ask_and_store_answer(S),symptom_absent(S)))).
 delete_all_symptoms :- ((retractall(symptom_present(_)), retractall(symptom_absent(_)),fail) ; true).
 
-start :- delete_all_symptoms, diagnose.
+start :- delete_all_symptoms, diagnose, ask_what_to_do.
 
 diagnose :-
     html_output_localized_message(diagnose_start),
@@ -52,17 +52,18 @@ diagnose :-
 
 % Print all symptom_present/1 predicates
 print_symptom_present :-
-    print_localized_message(questions_answered_yes),
-    forall(symptom_present(Symptom), print_localized_message(Symptom)),
+    html_output_localized_message(questions_answered_yes),
+    forall(symptom_present(Symptom), html_output_localized_message(Symptom)),
     nl.
 print_symptom_absent :-
-    print_localized_message(questions_answered_no),
-    forall(symptom_absent(Symptom), print_localized_message(Symptom)),
+    html_output_localized_message(questions_answered_no),
+    forall(symptom_absent(Symptom), html_output_localized_message(Symptom)),
     nl.
 report :-
     print_symptom_present,
     print_symptom_absent,
-    print_localized_message(questions_answered_report_end).
+    html_output_localized_message(questions_answered_report_end),
+    ask_what_to_do.
 
 %%%%%%% Other predicates %%%%%%%%%
 html_output_answer(Question, YesLabel) :-
@@ -82,6 +83,17 @@ ask_and_store_answer(Question) :-
 	( Answer == 'Yes' -> html_output_answer(HtmlQuestion, YesLabel), assert(symptom_present(Question)) ;
        html_output_answer(HtmlQuestion, NoLabel), assert(symptom_absent(Question))).
 
+ask_what_to_do :-
+	current_locale(Locale),
+	answer_diagnose_label(Locale, DiagnoseLabel),
+	answer_report_label(Locale, ReportLabel),
+    load_translation_text(Locale, what_to_do_next, HtmlQuestion),
+	wc_ask([ answer(Answer) ], [ p(HtmlQuestion),
+	    button([name(answer), type(submit), value("Diagnose"), accesskey("d")], DiagnoseLabel),
+        button([name(answer), type(submit), value("Report"), accesskey("r")], ReportLabel)
+                                                                    ]),
+	( Answer == 'Diagnose' -> start; report).
+
 % To inform prolog, that there are many predicates with different locales, these must be together in the same file
 answer_yes_label(en, "Yes").
 answer_yes_label(de, "Ja").
@@ -89,3 +101,9 @@ answer_yes_label(es, "Sí").
 answer_no_label(en, "No").
 answer_no_label(de, "Nein").
 answer_no_label(es, "No").
+answer_diagnose_label(en, "Diagnose a new case").
+answer_diagnose_label(de, "Diagnostizieren einen neuen Fall").
+answer_diagnose_label(es, "Diagnosticar un nuevo caso").
+answer_report_label(en, "Generate report").
+answer_report_label(de, "Bericht generieren").
+answer_report_label(es, "Generar un informe").

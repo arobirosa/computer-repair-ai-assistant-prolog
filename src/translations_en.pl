@@ -53,6 +53,7 @@ prolog:message(answer_keys_list(en)) --> [" (yes/y/no/n) "].
 prolog:message(diagnose_is(en)) --> ["The issue is: "].
 prolog:message(unable_to_diagnose_broken_component(en)) --> ["I can not diagnose the broken component. Please contact a technician.", nl].
 prolog:message(diagnose_start(en)) --> ["Let's start with the diagnose!"].
+prolog:message(what_to_do_next(en)) --> ["What do you want to do next?"].
 
 % Debug messages
 prolog:message(setting_locale(Language)) --> ["Setting the locale to ~w"-[Language]].

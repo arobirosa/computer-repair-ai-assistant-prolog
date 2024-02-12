@@ -36,6 +36,5 @@ main(Argv) :-
     print_message(debug, setting_locale(Language)),
     areko_localization:store_locale(Language),
     start_server,
-    start,
-    halt.
+    start.
 
