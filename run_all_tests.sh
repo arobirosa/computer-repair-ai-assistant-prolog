@@ -22,8 +22,8 @@
 % This PrologScrit runs all tests
 :- load_test_files([library(plunit), silent(true)]).
 :- consult('test/src/broken_component_power_cord.plt').
-%%:- consult('test/src/i18n_locale_management.plt').
-%% :- consult('test/src/i18n_localized_messages.plt'). %% Because it has a message hook, it must be run in a separate script
+:- consult('test/src/i18n_locale_management.plt').
+% :- consult('test/src/i18n_localized_messages.plt'). %% Because it has a message hook, it must be run in a separate script
 
 :- initialization(main, main).
 
