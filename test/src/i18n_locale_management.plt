@@ -36,4 +36,8 @@ test(setsSpanishLocale) :-
     store_locale(es),
     current_locale(es).
 
+test(setsSpanishLocaleWithString) :-
+    store_locale("es"),
+    current_locale(es).
+
 :- end_tests(i18n).

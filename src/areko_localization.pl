@@ -22,6 +22,8 @@
 	    html_output_localized_messages/1,
 	    current_locale/1
 	  ]).
+
+:- attach_packs(packs, [replace(true)]).
 :- use_module(library(http/html_write)).
 :- reexport(library(webconsole)).
 :- consult('translations_en.pl').
@@ -40,7 +42,8 @@ print_localized_message(Key, Locale) :-
 :- dynamic current_locale/1.
 store_locale(Locale) :- (member(Locale, [en,es,de]) ; fail),
     print_message(debug, setting_locale(Locale)),
-    retractall(current_locale(_)), assert(current_locale(Locale)).
+    retractall(current_locale(_)), assertz(current_locale(Locale)), !.
+store_locale(LocaleString) :- string(LocaleString), term_string(LocaleTerm, LocaleString), store_locale(LocaleTerm), !.
 store_locale(_Locale) :- store_locale(en).
 
 html_output_localized_message(Key) :-
