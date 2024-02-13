@@ -19,6 +19,7 @@
 	  [
 	  ]).
 :- use_module(library(http/http_dispatch)).
+:- use_module(library(http/thread_httpd)).
 :- use_module(library(http/html_write)).
 :- use_module(library(http/html_head)).
 :- use_module(library(http/http_path)).
@@ -28,8 +29,6 @@
 :- multifile http:location/3.
 :- dynamic   http:location/3.
 
-http:location(resourcesDirectory, '/http/web', [prioriy(10)]).
-
 :- html_resource(css('naturedesign.css'),
 		 [ requires('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css')
 		 ]).
@@ -38,6 +37,9 @@ http:location(resourcesDirectory, '/http/web', [prioriy(10)]).
 		   requires(css('naturedesign.css')),
 		   requires(css('webconsole.css'))
 		 ]).
+
+% Serve the CSS file. I didn't find a working way to serve CSS from two different folders
+:- http_handler('/css/naturedesign.css', http_reply_file('css/naturedesign.css', []), []).
 
 % Overwrite the home page
 
