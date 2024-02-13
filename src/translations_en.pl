@@ -57,3 +57,4 @@ prolog:message(what_to_do_next(en)) --> ["What do you want to do next?"].
 
 % Debug messages
 prolog:message(setting_locale(Language)) --> ["Setting the locale to ~w"-[Language]].
+prolog:message(ask_and_store_answer(Question)) --> ["Asking the question ~w and storing the answer"-[Question]].

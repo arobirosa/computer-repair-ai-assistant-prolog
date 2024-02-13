@@ -108,6 +108,7 @@ html_output_answer(Question, YesLabel) :-
 
 % Predicate to read a yes/no answer and store the answer in the knowledge base
 ask_and_store_answer(Question) :-
+    print_message(debug, ask_and_store_answer(Question)),
 	current_locale(Locale),
 	answer_yes_label(Locale, YesLabel),
 	answer_no_label(Locale, NoLabel),
