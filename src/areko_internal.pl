@@ -25,6 +25,7 @@
 
 % Load packs of this project
 :- attach_packs(packs, [replace(true)]).
+:- use_module(library(http/html_write)).
 :- use_module(library(webconsole)).
 :- use_module("areko_localization.pl").
 :- use_module("areko_html_pages.pl").
@@ -52,21 +53,49 @@ diagnose :-
     html_output_localized_message(unable_to_diagnose_broken_component).
 
 
+% Print all symptoms entered by the user
+find_all_symptoms(AllSymptomsRows) :-
+    find_all_symptom_present(PresentSymptomsRows),
+    find_all_symptom_absent(AbsentSymptomsRows),
+    append(PresentSymptomsRows,AbsentSymptomsRows, AllSymptomsRows).
 
-% Print all symptom_present/1 predicates
-print_symptom_present :-
-    html_output_localized_message(questions_answered_yes),
-    forall(symptom_present(Symptom), html_output_localized_message(Symptom)),
-    nl.
-print_symptom_absent :-
-    html_output_localized_message(questions_answered_no),
-    forall(symptom_absent(Symptom), html_output_localized_message(Symptom)),
-    nl.
+find_all_symptom_present(SymptomsRows):-
+    current_locale(Locale),
+    answer_yes_label(Locale, YesLabel),
+    findall((HtmlQuestion, YesLabel, Symptom), (symptom_present(Symptom), load_translation_text(Locale, Symptom, HtmlQuestion)), SymptomsRows).
+
+find_all_symptom_absent(SymptomsRows):-
+    current_locale(Locale),
+    answer_no_label(Locale, NoLabel),
+    findall((HtmlQuestion, NoLabel, Symptom), (symptom_absent(Symptom), load_translation_text(Locale, Symptom, HtmlQuestion)), SymptomsRows).
+
+generate_html_symptom_rows([]) --> [].
+generate_html_symptom_rows([H|T]) --> generate_html_symptom_row(H), generate_html_symptom_rows(T).
+
+generate_html_symptom_row((HtmlQuestion, AnswerLabel, Symptom)) -->
+	html(tr([td(HtmlQuestion),
+		 td(AnswerLabel),
+		 td(Symptom)
+		])).
+
 report :-
-    print_symptom_present,
-    print_symptom_absent,
-    html_output_localized_message(questions_answered_report_end),
+    find_all_symptoms(AllSymptomsRows),
+    report(AllSymptomsRows),
     ask_what_to_do.
+
+report(AllSymptomsRows) :-
+    wc_html(p(div(class("container"), div(class("row"),
+        table(class("table table-warning table-striped table-hover table-bordered table-responsive"),
+            [thead(
+                tr([
+                    th([], "Question"),
+                    th([], "Answer"),
+                    th([], "Code")
+                ])
+            ),
+            tbody(
+                [\generate_html_symptom_rows(AllSymptomsRows)])]
+        ))))).
 
 %%%%%%% Other predicates %%%%%%%%%
 html_output_answer(Question, YesLabel) :-
