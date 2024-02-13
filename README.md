@@ -51,6 +51,7 @@ I can open the uniprot database without issues in Intellij IDEA and [DB Browser 
 * There aren't any prolog programmers in the market. Prolog is more difficult to understand as a language than object-oriented or imperative languages like Java or Python
 
 ## Neutral points
+* The strenghts of prolog are knowledge, logic and integration with other programming languages. As long as you work in the logical programming paradigm the code is elegant, easy to read and can be easily tested. If you jump into the imperative paradigm by creating a website, the resulting code for generating the HTML page is ugly, long and error prone and the internals are difficult to follow.
 * The SWI Prolog implementation is mature for commercial projects. 
 * The IDEs have poor support for Prolog. Intellij IDEA supports Prolog syntax highlighting using the plug-in Logtalk. The Prolog plugin is not compatible with version 2022.1.3 
 
