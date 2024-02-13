@@ -39,6 +39,7 @@ print_localized_message(Key, Locale) :-
 % Store the current locale. If it isn't supported, fallback to English.
 :- dynamic current_locale/1.
 store_locale(Locale) :- (member(Locale, [en,es,de]) ; fail),
+    print_message(debug, setting_locale(Locale)),
     retractall(current_locale(_)), assert(current_locale(Locale)).
 store_locale(_Locale) :- store_locale(en).
 

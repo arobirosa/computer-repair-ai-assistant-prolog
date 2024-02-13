@@ -33,7 +33,6 @@ main(Argv) :-
     % Parse the command-line arguments
     argv_options(Argv, _PositionalArgs, ReceivedArguments),
     option(language(Language), ReceivedArguments, en),
-    print_message(debug, setting_locale(Language)),
     areko_localization:store_locale(Language),
     start_server,
     start.
