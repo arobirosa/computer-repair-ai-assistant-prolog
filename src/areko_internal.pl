@@ -33,7 +33,7 @@
 % At startup we start the server and show the browser window
 start_server :- wc_start([title("Computer Repair AI Assistant"),port(8080)]).
 
-% Informs the engine that these predicates will change during execution. They are inputted by the user.
+% Informs the engine that these predicates will change during execution. They are entered by the user.
 :- dynamic symptom_present/1,symptom_absent/1.
 
 symptom(S) :- (symptom_present(S) -> true ; (symptom_absent(S) -> fail ;
