@@ -84,13 +84,17 @@ report :-
     ask_what_to_do.
 
 report(AllSymptomsRows) :-
+    current_locale(Locale),
+	question_label(Locale, QuestionLabel),
+	answer_label(Locale, AnswerLabel),
+	code_label(Locale, CodeLabel),
     wc_html(p(div(class("container"), div(class("row"),
         table(class("table table-warning table-striped table-hover table-bordered table-responsive"),
             [thead(
                 tr([
-                    th([], "Question"),
-                    th([], "Answer"),
-                    th([], "Code")
+                    th(QuestionLabel),
+                    th(AnswerLabel),
+                    th(CodeLabel)
                 ])
             ),
             tbody(
@@ -135,6 +139,17 @@ answer_yes_label(es, "Sí").
 answer_no_label(en, "No").
 answer_no_label(de, "Nein").
 answer_no_label(es, "No").
+
+question_label(en, "Question").
+question_label(de, "Frage").
+question_label(es, "Pregunta").
+answer_label(en, "Answer").
+answer_label(de, "Antwort").
+answer_label(es, "Respuesta").
+code_label(en, "Code").
+code_label(de, "Code").
+code_label(es, "Código").
+
 answer_diagnose_label(en, "Diagnose a new case").
 answer_diagnose_label(de, "Diagnostizieren einen neuen Fall").
 answer_diagnose_label(es, "Diagnosticar un nuevo caso").
