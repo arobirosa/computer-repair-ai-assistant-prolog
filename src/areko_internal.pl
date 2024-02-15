@@ -15,13 +15,6 @@
 %
 
 %% INTERNAL PREDICATES OF THE EXPERT SYSTEM. DO NOT TOUCH.
-:- module(areko_internal,
-	  [ start_server/0,
-	    symptom/1,
-	    is_absent/1,
-	    start/0,
-	    report/0
-	  ]).
 
 % Load packs of this project
 :- attach_packs(packs, [replace(true)]).
@@ -34,6 +27,7 @@
 start_server :- wc_start([title("Computer Repair AI Assistant"),port(8080)]).
 
 % Informs the engine that these predicates will change during execution. They are entered by the user.
+% They can only be changed inside this module.
 :- dynamic symptom_present/1,symptom_absent/1.
 
 symptom(S) :- (symptom_present(S) -> true ; (symptom_absent(S) -> fail ;
@@ -132,6 +126,12 @@ ask_what_to_do :-
              button([name(answer), type(submit), class("btn btn-success"), value("Report"), accesskey("r")], ReportLabel)]
 	    )]),
 	( Answer == 'Diagnose' -> start; report).
+
+% Predicates used for testing
+test_assert_symptom_present(S) :- assert(symptom_present(S)).
+test_assert_symptom_absent(S) :- assert(symptom_absent(S)).
+test_retract_all_symptoms_present :- retractall(symptom_present(_)).
+test_retract_all_symptoms_absent :- retractall(symptom_absent(_)).
 
 % To inform prolog, that there are many predicates with different locales, these must be together in the same file
 answer_yes_label(en, "Yes").
