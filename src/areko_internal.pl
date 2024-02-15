@@ -15,6 +15,17 @@
 %
 
 %% INTERNAL PREDICATES OF THE EXPERT SYSTEM. DO NOT TOUCH.
+:- module(areko_internal,
+	  [ start_server/0,
+	    symptom/1,
+	    is_absent/1,
+	    start/0,
+	    report/0,
+	    test_assert_symptom_present/1,
+        test_assert_symptom_absent/1,
+        test_retract_all_symptoms_present/0,
+        test_retract_all_symptoms_absent/0
+	  ]).
 
 % Load packs of this project
 :- attach_packs(packs, [replace(true)]).

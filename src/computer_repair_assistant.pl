@@ -21,7 +21,7 @@
 %   start   Starts a new repair case. It removes all old facts entered by the user.
 %   report  Generates a report with present and absent symptoms
 
-:- consult("areko_internal.pl").
+:- use_module("areko_internal.pl").
 
 %%%%%%% DEFINITION OF REPAIR ISSUES
 

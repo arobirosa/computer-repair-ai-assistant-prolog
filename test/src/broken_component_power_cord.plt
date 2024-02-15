@@ -14,15 +14,13 @@
 %   limitations under the License.
 %
 
-% Test all the predicates related to internationisation
+% Test all the predicates related to symptoms
 %
 % Run this test using the following command from the repository's root':
 %
 %    swipl -g run_tests -t halt test/src/broken_component_power_cord.plt
 %
-:- consult('../../src/areko_internal.pl').
-
-:- dynamic symptom_present/1,symptom_absent/1.
+:- use_module('../../src/areko_internal.pl').
 
 brokenComponent(power_cord_is_broken) :-
     is_absent(system_turns_on),
