@@ -1,0 +1,14 @@
+#wc_output
+{ width: 100%;
+  heigth: 200px;
+  overflow: auto;
+  border: solid 1px;
+}
+
+form.inactive
+{ color: #ccc;
+}
+
+#preview h1,address
+{ display: none;
+}
