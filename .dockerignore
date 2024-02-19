@@ -6,7 +6,8 @@ docker
 docs
 packs/Downloads
 packs/.gitkeep
-packs/.gitkeep
+src/packs.pl
+src/scratch.pl
 webDesign
 .gitignore
 .project
