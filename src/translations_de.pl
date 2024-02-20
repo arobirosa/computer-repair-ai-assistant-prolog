@@ -1,5 +1,5 @@
 %!
-%   Copyright 2024 Antonio Robirosa <ai.prolog@murak.eu>
+%   Copyright 2024 Antonio Robirosa <expert.system@go.areko.consulting>
 %
 %   Licensed under the Apache License, Version 2.0 (the "License");
 %   you may not use this file except in compliance with the License.
@@ -52,3 +52,5 @@ prolog:message(answer_keys_list(de)) --> [" (ja/j/nein/n) "].
 prolog:message(diagnose_is(de)) --> ["Die Diagnose ist: "].
 prolog:message(unable_to_diagnose_broken_component(de)) --> ["Ich kann nicht herausfinden, welche Komponente kaputt ist. ",
     "Bitte wenden Sie sich an einen Techniker.", nl].
+prolog:message(diagnose_start(de)) --> ["Fangen wir mit der Diagnose an!"].
+prolog:message(what_to_do_next(de)) --> ["Was möchten Sie machen?"].

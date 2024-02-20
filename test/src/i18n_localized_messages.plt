@@ -1,5 +1,5 @@
 %!
-%   Copyright 2024 Antonio Robirosa <ai.prolog@murak.eu>
+%   Copyright 2024 Antonio Robirosa <expert.system@go.areko.consulting>
 %
 %   Licensed under the Apache License, Version 2.0 (the "License");
 %   you may not use this file except in compliance with the License.
@@ -20,9 +20,9 @@
 %
 %    swipl -g run_tests -t halt test/src/i18n_localized_messages.plt
 %
+:- use_module('../../src/areko_localization.pl').
 
 :- begin_tests(i18n).
-:- consult('../../src/computer_repair_assistant.pl').
 
 :- multifile user:message_hook/3.
 :- dynamic captured_string/1.
@@ -45,5 +45,13 @@ test(translationsInEnglishFallbackToTheCode) :-
     print_localized_message(unknown_translation_code, en),
     (captured_string("[Unknown message: ~p-[unknown_translation_code(en)]]") -> true;
         (forall(captured_string(Symptom), (write("Test failed. Captured: '"), write(Symptom), writeln("'")))), fail).
+
+test(loadExistingTranslationText) :-
+    load_translation_text(en, disconnected_ram_modules, Translation),
+    Translation == "The RAM module was disconnected from the motherboard".
+
+test(loadMissingTranslationText) :-
+    load_translation_text(dk, disconnected_ram_modules, Translation),
+    Translation == "Unknown message: disconnected_ram_modules(dk)".
 
 :- end_tests(i18n).

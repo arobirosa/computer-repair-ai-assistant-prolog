@@ -1,0 +1,53 @@
+body .container #wc_output
+{
+    border: none;
+}
+
+form.inactive
+{ color: #ccc;
+}
+
+#preview h1,address
+{ display: none;
+}
+
+body {
+    background-color: forestgreen;
+}
+
+.container p {
+    color: #AEF062;
+    padding-left: 20px;
+}
+
+.container .row {
+    color: white;
+}
+
+body h1 {
+    font-weight: bold;
+    color: #AEF062;
+}
+
+.container .form-group {
+    background-color: #AEF062;
+}
+
+.container .form-group p {
+    color: white;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.container .form-group .btn-group {
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.container table tr td {
+    color: green;
+}
+
+.container table tr th {
+    color: #F0BE62;
+}

@@ -1,5 +1,5 @@
 %!
-%   Copyright 2024 Antonio Robirosa <ai.prolog@murak.eu>
+%   Copyright 2024 Antonio Robirosa <expert.system@go.areko.consulting>
 %
 %   Licensed under the Apache License, Version 2.0 (the "License");
 %   you may not use this file except in compliance with the License.
@@ -52,3 +52,5 @@ prolog:message(questions_answered_report_end(es)) --> ["=== Fin del informe ==="
 prolog:message(answer_keys_list(es)) --> [" (si/s/no/n) "].
 prolog:message(diagnose_is(es)) --> ["La causa del problema es: "].
 prolog:message(unable_to_diagnose_broken_component(es)) --> ["No puedo diagnosticar el problema. ", "Póngase en contacto con un técnico.", nl].
+prolog:message(diagnose_start(es)) --> ["Empecemos a diagnosticar!"].
+prolog:message(what_to_do_next(es)) --> ["¿Qué quiere hacer a continuación?"].

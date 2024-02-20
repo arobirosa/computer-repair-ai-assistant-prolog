@@ -1,5 +1,5 @@
 %!
-%   Copyright 2024 Antonio Robirosa <ai.prolog@murak.eu>
+%   Copyright 2024 Antonio Robirosa <expert.system@go.areko.consulting>
 %
 %   Licensed under the Apache License, Version 2.0 (the "License");
 %   you may not use this file except in compliance with the License.
@@ -20,20 +20,8 @@
 % Predicates
 %   start   Starts a new repair case. It removes all old facts entered by the user.
 %   report  Generates a report with present and absent symptoms
-% TODO The following predicates must be implemented
-%
-%   change  Modifies the answers
-%   save(repairCaseID)  Saves the case into the database
-%   load(repairCaseID)  Loads the case from the database
 
-:- discontiguous symptom/1.
-
-:- consult('internal.pl').
-:- consult('localization.pl').
-:- consult('translations_en.pl').
-:- consult('translations_es.pl').
-:- consult('translations_de.pl').
-
+:- use_module("areko_internal.pl").
 
 %%%%%%% DEFINITION OF REPAIR ISSUES
 

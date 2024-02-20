@@ -1,5 +1,5 @@
 %!
-%   Copyright 2024 Antonio Robirosa <ai.prolog@murak.eu>
+%   Copyright 2024 Antonio Robirosa <expert.system@go.areko.consulting>
 %
 %   Licensed under the Apache License, Version 2.0 (the "License");
 %   you may not use this file except in compliance with the License.
@@ -52,3 +52,9 @@ prolog:message(questions_answered_report_end(en)) --> ["=== End of report ===", 
 prolog:message(answer_keys_list(en)) --> [" (yes/y/no/n) "].
 prolog:message(diagnose_is(en)) --> ["The issue is: "].
 prolog:message(unable_to_diagnose_broken_component(en)) --> ["I can not diagnose the broken component. Please contact a technician.", nl].
+prolog:message(diagnose_start(en)) --> ["Let's start with the diagnose!"].
+prolog:message(what_to_do_next(en)) --> ["What do you want to do next?"].
+
+% Debug messages
+prolog:message(setting_locale(Language)) --> ["Setting the locale to ~w"-[Language]].
+prolog:message(ask_and_store_answer(Question)) --> ["Asking the question ~w and storing the answer"-[Question]].

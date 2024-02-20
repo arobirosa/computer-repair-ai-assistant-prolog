@@ -13,31 +13,15 @@
 %   See the License for the specific language governing permissions and
 %   limitations under the License.
 %
+:- module(packs, []).
+:- use_module(library(prolog_pack)).
+:- attach_packs(packs, [replace(true)]).
 
-% Test all the predicates related to internationisation
-%
-% Run this test using the following command from the repository's root':
-%
-%    swipl -g run_tests -t halt test/src/i18n_locale_management.plt
-%
-:- use_module('../../src/areko_localization.pl').
+:- initialization(install_or_upgrade, main).
 
-:- begin_tests(i18n).
+% pack_install_local is not available on SWI-Prolog version 9.0.4
+pack(webconsole, [version('0.9.1')]).
 
-test(defaultLocaleIsEnglish) :-
-    store_locale(en),
-    current_locale(en).
-
-test(fallbackToEnglishIfTheLocaleIsUnknown) :-
-    store_locale(dk),
-    current_locale(en).
-
-test(setsSpanishLocale) :-
-    store_locale(es),
-    current_locale(es).
-
-test(setsSpanishLocaleWithString) :-
-    store_locale("es"),
-    current_locale(es).
-
-:- end_tests(i18n).
+install_or_upgrade :-
+    % pack_install_local is not available on SWI-Prolog version 9.0.4
+    pack_install(webconsole, [interactive(false), upgrade(true), global(false), package_directory(packs)]).

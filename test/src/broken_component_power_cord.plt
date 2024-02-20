@@ -1,5 +1,5 @@
 %!
-%   Copyright 2024 Antonio Robirosa <ai.prolog@murak.eu>
+%   Copyright 2024 Antonio Robirosa <expert.system@go.areko.consulting>
 %
 %   Licensed under the Apache License, Version 2.0 (the "License");
 %   you may not use this file except in compliance with the License.
@@ -14,37 +14,53 @@
 %   limitations under the License.
 %
 
-% Test all the predicates related to internationisation
+% Test all the predicates related to symptoms
 %
 % Run this test using the following command from the repository's root':
 %
 %    swipl -g run_tests -t halt test/src/broken_component_power_cord.plt
 %
+:- use_module('../../src/areko_internal.pl').
 
-:- begin_tests(power_cord_is_broken).
-:- consult('../../src/computer_repair_assistant.pl').
+brokenComponent(power_cord_is_broken) :-
+    is_absent(system_turns_on),
+    is_absent(battery_light_turns_on),
+    symptom(system_works_with_another_power_cord).
+
+:- begin_tests(absent_present_symptoms).
 
 test(all_conditions_true) :-
-    asserta(symptom_absent(system_turns_on)),
-    asserta(symptom_absent(battery_light_turns_on)),
-    asserta(symptom_present(system_works_with_another_power_cord)),
-    brokenComponent(power_cord_is_broken),
-    retract(symptom_absent(system_turns_on)),
-    retract(symptom_absent(battery_light_turns_on)),
-    retract(symptom_present(system_works_with_another_power_cord)).
+    test_retract_all_symptoms_present,
+    test_retract_all_symptoms_absent,
+    test_assert_symptom_absent(system_turns_on),
+    test_assert_symptom_absent(battery_light_turns_on),
+    test_assert_symptom_present(system_works_with_another_power_cord),
+    brokenComponent(power_cord_is_broken).
+
+test(one_symptom_present) :-
+    test_retract_all_symptoms_present,
+    test_assert_symptom_present(system_works_with_another_power_cord),
+    symptom(system_works_with_another_power_cord).
+
+test(one_symptom_absent) :-
+    test_retract_all_symptoms_present,
+    test_retract_all_symptoms_absent,
+    test_assert_symptom_absent(system_turns_on),
+    is_absent(system_turns_on),
+    test_retract_all_symptoms_absent.
 
 test(system_turns_on, [fail]) :-
-    asserta(symptom_present(system_turns_on)),
-    asserta(symptom_absent(battery_light_turns_on)),
-    brokenComponent(power_cord_is_broken),
-    retract(symptom_present(system_turns_on)),
-    retract(symptom_absent(battery_light_turns_on)).
+    test_retract_all_symptoms_present,
+    test_retract_all_symptoms_absent,
+    test_assert_symptom_present(system_turns_on),
+    test_assert_symptom_absent(battery_light_turns_on),
+    brokenComponent(power_cord_is_broken).
 
 test(battery_light_turns_on, [fail]) :-
-    asserta(symptom_absent(system_turns_on)),
-    asserta(symptom_present(battery_light_turns_on)),
+    test_assert_symptom_absent(system_turns_on),
+    test_assert_symptom_present(battery_light_turns_on),
     brokenComponent(power_cord_is_broken),
     retract(symptom_absent(system_turns_on)),
     retract(symptom_present(battery_light_turns_on)).
 
-:- end_tests(power_cord_is_broken).
+:- end_tests(absent_present_symptoms).
