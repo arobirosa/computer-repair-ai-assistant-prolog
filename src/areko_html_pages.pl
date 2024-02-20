@@ -41,6 +41,10 @@
 % Serve the CSS file. I didn't find a working way to serve CSS from two different folders
 :- http_handler('/css/naturedesign.css', http_reply_file('css/naturedesign.css', []), []).
 
+:- http_handler(root(.),
+                http_redirect(moved_temporary, location_by_id(wc_home)),
+                []).
+
 % Overwrite the home page
 
 :- http_handler(webconsole('wc_home'),    wc_home_nature_design,    [priority(1)]).
