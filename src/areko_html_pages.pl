@@ -17,6 +17,7 @@
 %% PREDICATES RELATED TO THE CREATION OF THE HTML PAGES
 :- module(areko_html_pages,
 	  [
+	    start_server/0
 	  ]).
 :- use_module(library(http/http_dispatch)).
 :- use_module(library(http/thread_httpd)).
@@ -24,6 +25,9 @@
 :- use_module(library(http/html_head)).
 :- use_module(library(http/http_path)).
 :- use_module(library(webconsole)).
+
+% At startup we start the server
+start_server :- http_server(http_dispatch, [port(8080)]).
 
 % Location of the CSS files
 :- multifile http:location/3.

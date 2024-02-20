@@ -34,6 +34,6 @@ main(Argv) :-
     argv_options(Argv, _PositionalArgs, ReceivedArguments),
     option(language(Language), ReceivedArguments, en),
     areko_localization:store_locale(Language),
-    start_server_without_browser,
+    areko_html_pages:start_server,
     start.
 
