@@ -18,12 +18,20 @@
 %   See the License for the specific language governing permissions and
 %   limitations under the License.
 %
-% This prolog script is the entry point to for the docker image
+% This script process the arguments and starts the assistent.
 :- initialization(main, main).
 :- consult('src/computer_repair_assistant.pl').
 
-main :-
-    areko_localization:store_locale(en),
-    areko_internal:start_server,
-    start.
+opt_help(help(header), "Computer Repair AI Assistant v1.0.0").
+opt_help(help(footer), [ansi(bold, '\n~w', ["Please start this script without parameters to start the diagnose of your computer on an browser."])]).
+opt_help(language,"Switches the language of the application. If none is given, all questions are shown in English (en)").
 
+opt_type(language, language, oneof([en, de, es])).
+
+main(Argv) :-
+    % Parse the command-line arguments
+    argv_options(Argv, _PositionalArgs, ReceivedArguments),
+    option(language(Language), ReceivedArguments, en),
+    areko_localization:store_locale(Language),
+    areko_html_pages:start_server,
+    start.
