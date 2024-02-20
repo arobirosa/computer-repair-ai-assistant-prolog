@@ -101,7 +101,7 @@ swipl src/packs.pl
 
 On the root directory of the repository run:
 ~~~
-./run.sh
+swipl start.pl
 ~~~
 You can use the parameter --language to specify the language of the messages. For example: de, es or en. The default is en.
 
