@@ -12,11 +12,11 @@ form.inactive
 }
 
 body {
-    background-color: antiquewhite;
+    background-color: forestgreen;
 }
 
 .container p {
-    color: #F0BE62;
+    color: #AEF062;
     padding-left: 20px;
 }
 
@@ -26,7 +26,7 @@ body {
 
 body h1 {
     font-weight: bold;
-    color: greenyellow;
+    color: #AEF062;
 }
 
 .container .form-group {
@@ -45,7 +45,7 @@ body h1 {
 }
 
 .container table tr td {
-    color: #AEF062;
+    color: green;
 }
 
 .container table tr th {

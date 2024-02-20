@@ -16,8 +16,7 @@
 
 %% INTERNAL PREDICATES OF THE EXPERT SYSTEM. DO NOT TOUCH.
 :- module(areko_internal,
-	  [ start_server/0,
-	    symptom/1,
+	  [ symptom/1,
 	    is_absent/1,
 	    start/0,
 	    report/0,
@@ -33,9 +32,6 @@
 :- use_module(library(webconsole)).
 :- use_module("areko_localization.pl").
 :- use_module("areko_html_pages.pl").
-
-% At startup we start the server and show the browser window
-start_server :- wc_start([title("Computer Repair AI Assistant"),port(8080)]).
 
 % Informs the engine that these predicates will change during execution. They are entered by the user.
 % They can only be changed inside this module.

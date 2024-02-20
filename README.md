@@ -99,9 +99,21 @@ swipl src/packs.pl
 
 # Usage
 
+On the root directory of the repository run:
 ~~~
-swipl src/computer-repair-assistant.pl
+swipl start.pl
 ~~~
+You can use the parameter --language to specify the language of the messages. For example: de, es or en. The default is en.
+
+Then browse to http://localhost:8080
+
+## How to build and run it inside a Docker container
+On the root directory of the repository run:
+~~~
+sudo docker build -t computer_assistant:1.0 .
+sudo docker run -p 8080:8080 computer_assistant:1.0
+~~~
+Then browse to http://localhost:8080
 
 # How to contribute
 

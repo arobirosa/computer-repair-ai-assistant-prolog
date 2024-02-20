@@ -17,6 +17,7 @@
 %% PREDICATES RELATED TO THE CREATION OF THE HTML PAGES
 :- module(areko_html_pages,
 	  [
+	    start_server/0
 	  ]).
 :- use_module(library(http/http_dispatch)).
 :- use_module(library(http/thread_httpd)).
@@ -24,6 +25,9 @@
 :- use_module(library(http/html_head)).
 :- use_module(library(http/http_path)).
 :- use_module(library(webconsole)).
+
+% At startup we start the server
+start_server :- http_server(http_dispatch, [port(8080)]).
 
 % Location of the CSS files
 :- multifile http:location/3.
@@ -40,6 +44,11 @@
 
 % Serve the CSS file. I didn't find a working way to serve CSS from two different folders
 :- http_handler('/css/naturedesign.css', http_reply_file('css/naturedesign.css', []), []).
+:- http_handler('/js/webconsole.js', http_reply_file('js/webconsole_lazy_load.js', []), []).
+
+:- http_handler(root(.),
+                http_redirect(moved_temporary, location_by_id(wc_home)),
+                []).
 
 % Overwrite the home page
 

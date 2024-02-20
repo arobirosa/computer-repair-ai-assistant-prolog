@@ -1,4 +1,3 @@
-#!/usr/bin/env swipl
 %
 %   Computer Repair AI Assistant using Prolog
 %
@@ -19,7 +18,7 @@
 %   See the License for the specific language governing permissions and
 %   limitations under the License.
 %
-% This PrologScrit process the arguments and starts the assistent.
+% This script process the arguments and starts the assistent.
 :- initialization(main, main).
 :- consult('src/computer_repair_assistant.pl').
 
@@ -34,6 +33,5 @@ main(Argv) :-
     argv_options(Argv, _PositionalArgs, ReceivedArguments),
     option(language(Language), ReceivedArguments, en),
     areko_localization:store_locale(Language),
-    start_server,
+    areko_html_pages:start_server,
     start.
-
