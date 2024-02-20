@@ -24,6 +24,6 @@
 
 main :-
     areko_localization:store_locale(en),
-    start_server,
+    areko_internal:start_server,
     start.
 
