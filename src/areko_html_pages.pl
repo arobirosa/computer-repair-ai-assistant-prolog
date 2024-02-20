@@ -44,6 +44,7 @@ start_server :- http_server(http_dispatch, [port(8080)]).
 
 % Serve the CSS file. I didn't find a working way to serve CSS from two different folders
 :- http_handler('/css/naturedesign.css', http_reply_file('css/naturedesign.css', []), []).
+:- http_handler('/js/webconsole.js', http_reply_file('js/webconsole_lazy_load.js', []), []).
 
 :- http_handler(root(.),
                 http_redirect(moved_temporary, location_by_id(wc_home)),
